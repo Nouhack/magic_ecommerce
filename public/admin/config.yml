@@ -7,16 +7,31 @@ collections:
   - name: "pages"
     label: "Pages"
     files:
-    - label: "Home"
-      name: "home"
-      file: "content/home.md"
+    - label: "Categorie"
+      name: "category"
+      file: "content/category.md"
       fields:
         - { label: "Title", name: "title", widget: "string"}
-        - { label: "Publish Date", name: "date", widget: "datetime" }
-        - { label: "Body", name: "body", widget: "markdown"}
-        - label: 'Cats'
-          name: "cats"
+        - label: 'Categories'
+          name: "categories"
           widget: list
           fields:
-            - { label: "Name", name: "name", widget: "string"}
-            - { label: "Description", name: "description", widget: "text"}
+            - {label : "Nom" , name : "name" , widget: "string"}
+            - label : "Produits"
+              name : 'products'
+              widget: list
+              fields:
+                - { label: "Name", name: "name", widget: "string"}
+                - { label: "Miniature", name: "thumbnail", widget: "image"}
+                - { label: "Prix", name: "price", widget: "number", value_type: 'float'}
+                - { label: "Description", name: "description", widget: "text"}
+                - label : "Images"
+                  name : "images"
+                  widget:: list
+                  fields:
+                    - {label : "Image" , name: "image" , widget: "image"}
+
+
+
+
+
