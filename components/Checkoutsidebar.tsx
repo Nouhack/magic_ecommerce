@@ -103,7 +103,6 @@ export default function Checkoutsidebar() {
                     Name
                   </label>
                   <input
-                    inputid="name2"
                     type="text"
                     className="p-inputtext w-full mb-3"
                   />
@@ -113,7 +112,6 @@ export default function Checkoutsidebar() {
                     Surname
                   </label>
                   <input
-                    inputid="surname2"
                     type="text"
                     className="p-inputtext w-full mb-3"
                   />
@@ -123,7 +121,6 @@ export default function Checkoutsidebar() {
                     Apartment, Suite, etc.
                   </label>
                   <input
-                    inputid="address3"
                     type="text"
                     className="p-inputtext w-full mb-3"
                   />
@@ -133,7 +130,6 @@ export default function Checkoutsidebar() {
                     Postal Code
                   </label>
                   <input
-                    inputid="pc2"
                     type="text"
                     className="p-inputtext w-full mb-3"
                   />
@@ -143,7 +139,6 @@ export default function Checkoutsidebar() {
                     City
                   </label>
                   <input
-                    inputid="city2"
                     type="text"
                     className="p-inputtext w-full mb-3"
                   />
@@ -153,7 +148,6 @@ export default function Checkoutsidebar() {
                     Phone
                   </label>
                   <input
-                    inputid="phone"
                     type="text"
                     className="p-inputtext w-full mb-3"
                   />
