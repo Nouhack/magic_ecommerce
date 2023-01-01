@@ -28,9 +28,8 @@ collections:
                   name: "images"
                   widget: "image"
                   choose_url: true
-                  media_library:
-                    config:
-                      multiple: true
+                  allow_multiple : true
+
 
 
 
