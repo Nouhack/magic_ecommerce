@@ -231,7 +231,7 @@ const DataViewDemo = () => {
           />
         </div>
         <div className="md:col-2 col-6" style={{ textAlign: 'right' }}>
-          <DataViewLayoutOptions layout={layout} onChange={(e) => setLayout(e.value)} />
+          <DataViewLayoutOptions layout={layout === 'grid' ? 'grid' : 'list'} onChange={(e) => setLayout(e.value)} />
         </div>
       </div>
     );
