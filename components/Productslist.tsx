@@ -112,7 +112,7 @@ const DataViewDemo = () => {
   const [layout, setLayout] = useState('grid');
   const [sortKey, setSortKey] = useState(null);
   const [sortOrder, setSortOrder] = useState<any>(null);
-  const [sortField, setSortField] = useState(null);
+  const [sortField, setSortField] = useState('');
   const sortOptions = [
     { label: 'Price High to Low', value: '!price' },
     { label: 'Price Low to High', value: 'price' },
@@ -420,9 +420,13 @@ const DataViewDemo = () => {
 
       <div className="dataview-demo ">
         <div className="card">
-          <DataView value={products.filter((item, index) => item.name.includes(search) && categoryselected.indexOf(item.category) !== -1)} layout={layout} header={header}
-            itemTemplate={itemTemplate} paginator rows={9}
-            sortOrder={sortOrder} sortField={sortField} />
+          <DataView value={products.filter((item, index) => item.name.includes(search) && categoryselected.indexOf(item.category) !== -1)}
+            layout={layout === 'grid' ? 'grid' : 'list'}
+            header={header}
+            itemTemplate={itemTemplate}
+            paginator rows={9}
+            sortOrder={sortOrder}
+            sortField={sortField} />
         </div>
       </div>
     </div >
