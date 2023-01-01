@@ -258,7 +258,7 @@ const DataViewDemo = () => {
     ])
     setSortKey(null)
     setSortOrder(null)
-    setSortField(null)
+    setSortField('')
   }
   return (
     <div className='bg'>
