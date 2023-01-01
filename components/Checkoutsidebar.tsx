@@ -243,8 +243,7 @@ export default function Checkoutsidebar() {
                 {
                   selecteditems.map((item, index) => {
                     return (
-
-                      <li className="flex align-items-center mb-4">
+                      <li key={index} className="flex align-items-center mb-4">
                         <img
                           src={item.image}
                           className="w-6rem sm:w-8rem flex-shrink-0"
