@@ -15,16 +15,23 @@ collections:
           name: "categories"
           widget: list
           fields:
-            - { label: "Name", name: "name", widget: "string"}
+            - { label: "Nom de la categorie", name: "name", widget: "string"}
             - label : "Produits"
               name : 'products'
               widget: list
               fields:
-                - { label: "Name", name: "name", widget: "string"}
+                - { label: "Nom du produit", name: "name", widget: "string"}
                 - { label: "Miniature", name: "thumbnail", widget: "image" }
                 - { label: "Prix", name: "price", widget: "number", value_type: 'float'}
                 - { label: "Description", name: "description", widget: "text"}
-                - {label : "Image" , name: "image" , widget: "image" , options: {allow_multiple : true}}
+                - label: "Les images du produit"
+                  name: "images"
+                  widget: "image"
+                  choose_url: true
+                  media_library:
+                    config:
+                      multiple: true
+
 
 
 
