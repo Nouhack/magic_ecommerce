@@ -11,6 +11,7 @@ collections:
       name: "category"
       file: "content/category.md"
       fields:
+        - { label: "Title", name: "title", widget: "string"}
         - label: 'Categories'
           name: "categories"
           widget: list
@@ -25,7 +26,7 @@ collections:
                 - { label: "Description", name: "description", widget: "text"}
                 - label : "Images"
                   name : "images"
-                  widget:: list
+                  widget: list
                   fields:
                     - {label : "Image" , name: "image" , widget: "image"}
 
