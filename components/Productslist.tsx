@@ -4,6 +4,7 @@ import { Galleria } from 'primereact/galleria';
 import { DataView, DataViewLayoutOptions } from 'primereact/dataview';
 import { Button } from 'primereact/button';
 import { Carousel } from 'primereact/carousel';
+import { attributes, react as HomeContent } from '../content/category.md';
 
 import { Dropdown } from 'primereact/dropdown';
 import { Sidebar } from 'primereact/sidebar';
@@ -13,6 +14,7 @@ import { Dialog } from 'primereact/dialog';
 import { MultiSelect } from 'primereact/multiselect'
 
 const DataViewDemo = () => {
+  let { categories } = attributes;
   const [showfilter, setshowfilter] = useState(false)
   const [selecteditem, setselecteditem] = useState(
     {
@@ -25,82 +27,31 @@ const DataViewDemo = () => {
     }
   )
   const [search, setsearch] = useState('')
-  const [categoryselected, setcategoryselected] = useState([
 
-    'category 1',
-    'category 2',
-    'category 3',
-    'category 4',
-    'category 5'
-  ])
+
+
+  const [categoryselected, setcategoryselected] = useState(categories.map((item: any) => item.name))
   const [openproductdetail, setopenproductdetail] = useState(false)
 
-  const categories_list = [
-    'category 1',
-    'category 2',
-    'category 3',
-    'category 4',
-    'category 5'
-  ];
+  const categories_list = categories.map((item: any) => item.name)
 
-  const [products, setProducts] = useState([
-    {
-      name: 'product 1',
-      image: 'https://plus.unsplash.com/premium_photo-1670462145715-c32d0c91e81b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1100&q=80',
-      price: 10,
-      category: 'category 1',
-      description: 'lsdkjflskdjf sdklfj sdlkfjs lfkjsldfkjs dlfkjsdflksjdflksjdfl sdlfk sdlfk jsdlfk sjdf',
-      imagesdetail: [
-        'https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
-        'https://plus.unsplash.com/premium_photo-1664187387080-1b6408c0039c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80',
-        'https://images.unsplash.com/photo-1625772452859-1c03d5bf1137?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
 
-      ]
-    },
-    {
-      name: 'product 2',
-      image: 'https://plus.unsplash.com/premium_photo-1670462145715-c32d0c91e81b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1100&q=80',
-      price: 30,
-      category: 'category 2',
-      description: 'lsdkjflskdjf sdklfj sdlkfjs lfkjsldfkjs dlfkjsdflksjdflksjdfl sdlfk sdlfk jsdlfk sjdf',
-      imagesdetail: [
-        'https://images.unsplash.com/photo-1571781926291-c477ebfd024b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80',
-        'https://images.unsplash.com/photo-1629198688000-71f23e745b6e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80',
-        'https://images.unsplash.com/photo-1491553895911-0055eca6402d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80',
-      ]
-    },
-    {
-      name: 'product 3',
-      image: 'https://plus.unsplash.com/premium_photo-1670462145715-c32d0c91e81b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1100&q=80',
-      price: 4,
-      category: 'category 3',
-      description: 'lsdkjflskdjf sdklfj sdlkfjs lfkjsldfkjs dlfkjsdflksjdflksjdfl sdlfk sdlfk jsdlfk sjdf',
-      imagesdetail: [
-        'https://plus.unsplash.com/premium_photo-1670462145715-c32d0c91e81b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1100&q=80',
-        'https://plus.unsplash.com/premium_photo-1670462145715-c32d0c91e81b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1100&q=80',
-        'https://plus.unsplash.com/premium_photo-1670462145715-c32d0c91e81b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1100&q=80',
-        'https://plus.unsplash.com/premium_photo-1670462145715-c32d0c91e81b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1100&q=80',
 
-      ]
 
-    },
-    {
-      name: 'product 4',
-      image: 'https://plus.unsplash.com/premium_photo-1670462145715-c32d0c91e81b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1100&q=80',
-      price: 48,
-      category: 'category 4',
-      description: 'lsdkjflskdjf sdklfj sdlkfjs lfkjsldfkjs dlfkjsdflksjdflksjdfl sdlfk sdlfk jsdlfk sjdf',
-      imagesdetail: [
-        'https://plus.unsplash.com/premium_photo-1670462145715-c32d0c91e81b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1100&q=80',
-        'https://plus.unsplash.com/premium_photo-1670462145715-c32d0c91e81b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1100&q=80',
-        'https://plus.unsplash.com/premium_photo-1670462145715-c32d0c91e81b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1100&q=80',
-        'https://plus.unsplash.com/premium_photo-1670462145715-c32d0c91e81b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1100&q=80',
 
-      ]
-
-    },
-
-  ]);
+  const [products, setProducts] = useState(
+    categories.map((item: any) =>
+      item.products.map((item2: any) => ({
+        name: item2.name,
+        image: item2.thumbnail,
+        price: item2.price,
+        category: item.name,
+        description: item2.description,
+        imagesdetail: item2.images
+      })
+      )
+    )[0]
+  )
 
   const imagesdetail = [
     'https://plus.unsplash.com/premium_photo-1670462145715-c32d0c91e81b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1100&q=80',
@@ -138,15 +89,17 @@ const DataViewDemo = () => {
     return (
       <div className="col-12 "
       >
-        <div className="product-list-item">
+        <div
+
+          onClick={() => {
+            setselecteditem(data)
+            setopenproductdetail(true)
+
+          }}
+          className="product-list-item">
           <img src={`${data.image}`} alt={data.name} />
           <div
 
-            onClick={() => {
-              setselecteditem(data)
-              setopenproductdetail(true)
-
-            }}
             className="product-list-detail">
             <div className="product-name">{data.name}</div>
             <div className='mt-2'>
@@ -201,6 +154,9 @@ const DataViewDemo = () => {
             className="p-button-rounded p-button-outlined p-button-secondary w-full text-center "
             style={{
               display: 'inline-block'
+            }}
+            onClick={() => {
+              console.log(products)
             }}
           >
             <i className="pi pi-check mr-2"></i>
@@ -305,7 +261,7 @@ const DataViewDemo = () => {
                   style={{ maxWidth: '400px', height: '360px' }}
                   itemTemplate={(e) => {
                     return (
-                      <img src={e} alt='none' className='w-full h-full' style={{ objectFit: 'cover' }} />
+                      <img src={e.image} alt='none' className='w-full h-full' style={{ objectFit: 'cover' }} />
                     )
                   }} />
               </div>
@@ -424,7 +380,8 @@ const DataViewDemo = () => {
 
       <div className="dataview-demo ">
         <div className="card">
-          <DataView value={products.filter((item, index) => item.name.includes(search) && categoryselected.indexOf(item.category) !== -1)}
+          <DataView
+            value={products.filter((item: any, index: number) => item.name.includes(search) && categoryselected.indexOf(item.category) !== -1)}
             layout={layout === 'grid' ? 'grid' : 'list'}
             header={header}
             itemTemplate={itemTemplate}
