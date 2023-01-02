@@ -137,15 +137,17 @@ const DataViewDemo = () => {
   const renderListItem = (data: any) => {
     return (
       <div className="col-12 "
-        onClick={() => {
-          setselecteditem(data)
-          setopenproductdetail(true)
-
-        }}
       >
         <div className="product-list-item">
           <img src={`${data.image}`} alt={data.name} />
-          <div className="product-list-detail">
+          <div
+
+            onClick={() => {
+              setselecteditem(data)
+              setopenproductdetail(true)
+
+            }}
+            className="product-list-detail">
             <div className="product-name">{data.name}</div>
             <div className='mt-2'>
               <i className="pi pi-tag product-category-icon"></i><span className="category text-grey-400">{data.category}</span>
@@ -165,13 +167,15 @@ const DataViewDemo = () => {
     return (
 
       <div className="col-12 h-full md:col-6 lg:col-3 mb-5 md:mb-0 "
-        onClick={() => {
-          setselecteditem(data)
-          setopenproductdetail(true)
-        }}
       >
         <div className="p-2 h-full">
-          <div className="h-full relative mb-2">
+          <div
+
+            onClick={() => {
+              setselecteditem(data)
+              setopenproductdetail(true)
+            }}
+            className="h-full relative mb-2">
             <img
               src={data.image}
               className="w-full"
