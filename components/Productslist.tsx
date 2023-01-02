@@ -5,7 +5,6 @@ import { DataView, DataViewLayoutOptions } from 'primereact/dataview';
 import { Button } from 'primereact/button';
 import { Carousel } from 'primereact/carousel';
 import { attributes } from '../content/category.md';
-
 import { Dropdown } from 'primereact/dropdown';
 import { Sidebar } from 'primereact/sidebar';
 import { InputText } from 'primereact/inputtext'
