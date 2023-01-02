@@ -4,7 +4,7 @@ import { Galleria } from 'primereact/galleria';
 import { DataView, DataViewLayoutOptions } from 'primereact/dataview';
 import { Button } from 'primereact/button';
 import { Carousel } from 'primereact/carousel';
-import { attributes, react as HomeContent } from '../content/category.md';
+import { attributes } from '../content/category.md';
 
 import { Dropdown } from 'primereact/dropdown';
 import { Sidebar } from 'primereact/sidebar';
