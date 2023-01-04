@@ -136,10 +136,10 @@ const DataViewDemo = () => {
               style={{ objectFit: 'cover' }}
             />
             <div
-              className="absolute h-4rem w-4rem border-circle border-2 border-yellow-500 bg-gray-900 text-white inline-flex justify-content-center align-items-center"
+              className="absolute h-5rem w-5rem border-circle border-2 border-yellow-500 bg-gray-900 text-white inline-flex justify-content-center align-items-center"
               style={{ bottom: "1.25rem", right: "1rem" }}
             >
-              $42
+              {data.price} DA
             </div>
           </div>
           <div className="text-900 font-medium text-xl mb-3 text-center">
@@ -271,7 +271,7 @@ const DataViewDemo = () => {
                 <span className="text-xl font-medium text-900">
                   {selecteditem.name}
                 </span>
-                <span className="text-xl font-medium text-900">{selecteditem.price}</span>
+                <span className="text-xl font-medium text-900">{selecteditem.price} DA</span>
               </div>
               <p className="p-0 mt-0 mb-5 line-height-3 text-700">
                 {selecteditem.description}
