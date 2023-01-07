@@ -1,10 +1,9 @@
 
 import { useState } from 'react'
-import { Badge } from 'primereact/badge';
 import Checkoutsidebar from './Checkoutsidebar';
 import { Dialog } from 'primereact/dialog';
 
-export default function Header() {
+export default function Header(props: any) {
   const [showmodal, setshowmodal] = useState(false)
 
   return (
@@ -39,6 +38,13 @@ export default function Header() {
                 <a className="p-ripple flex align-items-center cursor-pointer p-3 text-700 hover:surface-100 border-round transition-colors transition-duration-150 w-full">
                   <i className="pi pi-book mr-2" />
                   <span className="font-medium">Categories</span>
+                  <span role="presentation" className="p-ink" />
+                </a>
+              </li>
+              <li>
+                <a className="p-ripple flex align-items-center cursor-pointer p-3 text-700 hover:surface-100 border-round transition-colors transition-duration-150 w-full">
+                  <i className="pi pi-info-circle mr-2" />
+                  <span className="font-medium">Magasin</span>
                   <span role="presentation" className="p-ink" />
                 </a>
               </li>
@@ -87,6 +93,17 @@ export default function Header() {
               />
             </a>
           </li>
+
+          <li className="flex flex-column lg:flex-row">
+            <a className="p-ripple inline-flex align-items-center cursor-pointer border-right-2 lg:border-right-none lg:border-bottom-2 border-transparent hover:border-primary py-3 lg:py-0 px-6 lg:px-3 text-700 select-none text-xl lg:text-base font-medium lg:font-base w-full lg:w-auto">
+              <span className='font-bold'>Magasin</span>
+              <span role="presentation" className="p-ink" />
+            </a>
+            <div className="surface-overlay shadow-none lg:shadow-2 hidden lg:absolute w-full left-0 top-100 px-6 py-0 lg:py-6 h-10rem lg:h-30rem z-1">
+              <div className="border-2 border-dashed surface-border border-round h-full" />
+            </div>
+          </li>
+
           <li className="flex flex-column lg:flex-row">
             <a className="p-ripple inline-flex align-items-center cursor-pointer border-right-2 lg:border-right-none lg:border-bottom-2 border-transparent hover:border-primary py-3 lg:py-0 px-6 lg:px-3 text-700 select-none text-xl lg:text-base font-medium lg:font-base w-full lg:w-auto">
               <span className='font-bold'>Categories</span>
@@ -111,7 +128,7 @@ export default function Header() {
         <ul className="list-none p-0 m-0 flex">
           <li className="flex">
             <a className="p-ripple text-900 font-medium inline-flex align-items-center cursor-pointer px-2 sm:px-3 hover:text-primary">
-              <Checkoutsidebar />
+              <Checkoutsidebar list={props.list} />
             </a>
           </li>
         </ul>

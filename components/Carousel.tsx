@@ -51,20 +51,15 @@ const CarouselDemo = () => {
     return (
 
 
-
-      <div className="p-carousel-item p-carousel-item-active p-carousel-item-start">
-
-        <div className="p-4 text-center">
-          <img
-            src={product.image}
-            className="w-full border-round-lg overflow-hidden"
-            alt="product"
-            height={350}
-            style={{
-              objectFit: 'cover'
-            }}
-          />
+      <div className="surface-card m-3 border-round shadow-2">
+        <img src={product.image} className="border-round-top w-full" alt="product" />
+        <div className="flex flex-column w-full p-4">
+          <span className="text-900 font-medium text-xl border-200 pb-2" style={{ borderBottom: "1px solid" }}>Category Title</span>
+          <span className="text-600 pt-2">
+            <i className="pi pi-fw pi-wallet mr-2" />Best Price
+          </span>
         </div>
+
       </div>
 
 
@@ -119,6 +114,8 @@ const CarouselDemo = () => {
           </div>
         </div>
       </div>
+
+      <h1 className='bg-black-alpha-90 text-white text-center'>Offres speciale</h1>
       <Carousel
         value={products} numVisible={3} numScroll={1} responsiveOptions={responsiveOptions} className="custom-carousel" circular
         autoplayInterval={3000} itemTemplate={productTemplate} />

@@ -1,7 +1,8 @@
 
-
-import React, { useState, useEffect } from 'react';
 import { Galleria } from 'primereact/galleria';
+import { useRef } from 'react'
+import { Toast } from 'primereact/toast';
+import React, { useState } from 'react';
 import { DataView, DataViewLayoutOptions } from 'primereact/dataview';
 import { Button } from 'primereact/button';
 import { Carousel } from 'primereact/carousel';
@@ -9,11 +10,13 @@ import { attributes } from '../content/category.md';
 import { Dropdown } from 'primereact/dropdown';
 import { Sidebar } from 'primereact/sidebar';
 import { InputText } from 'primereact/inputtext'
-import { Rating } from 'primereact/rating';
 import { Dialog } from 'primereact/dialog';
 import { MultiSelect } from 'primereact/multiselect'
 
-const DataViewDemo = () => {
+const DataViewDemo = (props: any) => {
+  const [selectedproducts, setselectedproducts] = useState([])
+
+  const toast = useRef(null);
   let { categories } = attributes;
   const [showfilter, setshowfilter] = useState(false)
   const [selecteditem, setselecteditem] = useState(
@@ -31,6 +34,7 @@ const DataViewDemo = () => {
 
 
   const [categoryselected, setcategoryselected] = useState(categories.map((item: any) => item.name))
+  const [defaultcategories, setdefaultcategories] = useState(categories.map((item: any) => item.name))
   const [openproductdetail, setopenproductdetail] = useState(false)
 
   const categories_list = categories.map((item: any) => item.name)
@@ -107,8 +111,14 @@ const DataViewDemo = () => {
             </div>
           </div>
           <div className="product-list-action">
-            <span className="product-price">${data.price}</span>
-            <Button icon="pi pi-shopping-cart p-button-outlined p-button-secondary" label="Add to Cart" disabled={data.inventoryStatus === 'OUTOFSTOCK'}></Button>
+            <span className="product-price">{data.price} DA</span>
+            <Button icon="pi pi-shopping-cart p-button-outlined p-button-secondary" label="Add to Cart "
+
+              className="p-button-rounded p-button-outlined p-button-secondary w-full text-center "
+              style={{
+                display: 'inline-block'
+              }}
+              disabled={data.inventoryStatus === 'OUTOFSTOCK'}></Button>
 
           </div>
         </div>
@@ -149,23 +159,28 @@ const DataViewDemo = () => {
             <i className="pi pi-tag mr-2 text-md" />
             <div className="font-medium line-height-1">{data.category}</div>
           </div>
-          <Button
-            type="button"
+
+          <Button icon="pi pi-shopping-cart p-button-outlined p-button-secondary" label="Add to Cart "
+
             className="p-button-rounded p-button-outlined p-button-secondary w-full text-center "
+            onClick={() => {
+              props.selected((old: any) => !old.includes(data) ? [...old, data] : old)
+
+              if (!props.val.includes(data)) {
+                toast.current.show({ severity: 'info', summary: 'Success Message', detail: 'Order submitted' });
+              } else {
+
+                toast.current.show({ severity: 'error', summary: 'Success Message', detail: 'Order submitted' });
+              }
+
+            }}
             style={{
               display: 'inline-block'
             }}
-            onClick={() => {
-              console.log(products)
-            }}
-          >
-            <i className="pi pi-check mr-2"></i>
-            Add to Cart
-            <span role="presentation" className="p-ink" />
-          </Button>
+            disabled={data.inventoryStatus === 'OUTOFSTOCK'}></Button>
 
         </div>
-      </div>
+      </div >
 
     );
   }
@@ -209,13 +224,7 @@ const DataViewDemo = () => {
 
   const resetfilter = () => {
     setsearch('')
-    setcategoryselected([
-      'category 1',
-      'category 2',
-      'category 3',
-      'category 4',
-      'category 5'
-    ])
+    setcategoryselected(defaultcategories)
     setSortKey(null)
     setSortOrder(null)
     setSortField('')
@@ -234,8 +243,7 @@ const DataViewDemo = () => {
           </span>
 
           <MultiSelect optionLabel="" className='w-full md:w-3  text-center' value={categoryselected} maxSelectedLabels={2} placeholder='select a category' options={categories_list} onChange={(e) => {
-            setcategoryselected(e.value)
-            console.log(categoryselected)
+            setcategoryselected(e?.value)
           }} />
 
           <div className='text-center w-full md:w-3'>
@@ -250,62 +258,57 @@ const DataViewDemo = () => {
       </Sidebar>
 
 
-      <Dialog visible={openproductdetail} position='top' modal style={{ width: '90vw' }} onHide={() => setopenproductdetail(false)}
+        /*
+      *
+      <Carousel className='h-full w-full' value={selecteditem.imagesdetail} numVisible={1} numScroll={1} orientation="horizontal" verticalViewPortHeight="360px"
+        style={{ maxWidth: '400px', height: '360px' }}
+        itemTemplate={(e) => {
+          return (
+            <img src={e.image} alt='none' className='w-full h-full' style={{ objectFit: 'cover' }} />
+          )
+        }} />
+      *
+      * */
+
+      <Dialog visible={openproductdetail} className='w-full md:w-8' position='top' modal onHide={() => setopenproductdetail(false)}
         draggable={true} resizable={true}>
 
-        <div className="surface-section px-4 py-8 md:px-6 lg:px-8">
-          <div className="grid">
-            <div className="col-12 lg:col-6">
-              <div className="flex h-full  justify-content-center">
-                <Carousel className='h-full w-full' value={selecteditem.imagesdetail} numVisible={1} numScroll={1} orientation="horizontal" verticalViewPortHeight="360px"
-                  style={{ maxWidth: '400px', height: '360px' }}
-                  itemTemplate={(e) => {
-                    return (
-                      <img src={e.image} alt='none' className='w-full h-full' style={{ objectFit: 'cover' }} />
-                    )
-                  }} />
-              </div>
+        <div id="pr_id_5_content" className="p-dialog-content" style={{ paddingTop: '1rem' }}>
+          <div className="grid relative">
+            <div className="col-12 lg:col-6 text-center ">
+
+              <Galleria value={selecteditem.imagesdetail} numVisible={5} circular style={{ maxWidth: '640px' }}
+                showItemNavigators showThumbnails={false} showItemNavigatorsOnHover showIndicators item={(e) => {
+                  return (
+                    <img src={e.image} alt='none' className='w-full ' style={{ objectFit: 'cover', height: '400px' }} />
+                  )
+                }} thumbnail={thumbnailTemplate} />
             </div>
-            <div className="col-12 lg:col-6 py-5 lg:py-3 lg:pl-5">
-              <div className="flex align-items-center justify-content-between mb-4">
-                <span className="text-xl font-medium text-900">
-                  {selecteditem.name}
-                </span>
-                <span className="text-xl font-medium text-900">{selecteditem.price} DA</span>
+            <div className="col-12 lg:col-6 py-0 lg:pl-5">
+              <div className="flex align-items-center justify-content-between mb-3"><span className="text-xl font-medium text-900">{selecteditem.name}</span></div>
+              <div className="flex align-items-center justify-content-between mb-3">
+                <div className="text-xl text-900">{selecteditem.price} da</div>
+                <div className="flex align-items-center"><span className="mr-3 flex"><i className="pi pi-star-fill text-yellow-500 mr-1" /><i className="pi pi-star-fill text-yellow-500 mr-1" /><i className="pi pi-star-fill text-yellow-500 mr-1" /><i className="pi pi-star-fill text-yellow-500 mr-1" /><i className="pi pi-star-fill text-yellow-500" /></span></div>
               </div>
-              <p className="p-0 mt-0 mb-5 line-height-3 text-700">
-                {selecteditem.description}
-              </p>
-              <div className="bg-yellow-200 text-yellow-900 text-sm inline-flex align-items-center px-2 py-1 font-medium mb-5">
-                <i className="pi pi-exclamation" />
-                <span>{selecteditem.category}</span>
+              <p className="p-0 mt-0 mb-3 line-height-3 text-700">{selecteditem.description}</p>
+              <div className="font-bold text-900 mb-3">Couleurs</div>
+              <div className="flex align-items-center mb-5">
+                <div className="w-2rem h-2rem flex-shrink-0 border-circle bg-cyan-500 mr-3 cursor-pointer border-2 border-white transition-all transition-duration-300" style={{ boxShadow: '0 0 0 0.2rem var(--cyan-500)' }} />
+                <div className="w-2rem h-2rem flex-shrink-0 border-circle bg-purple-500 mr-3 cursor-pointer border-2 border-white transition-all transition-duration-300" />
+                <div className="w-2rem h-2rem flex-shrink-0 border-circle bg-indigo-500 cursor-pointer border-2 border-white transition-all transition-duration-300" /></div>
+              <div className="mb-3 flex align-items-center justify-content-between"><span className="font-bold text-900">Size</span><a tabIndex={0} className="cursor-pointer text-600 text-sm flex align-items-center">Size Guide <i className="ml-1 pi pi-angle-right" /></a></div>
+              <div className="flex align-items-center mb-3 text-base">
+                <div className="h-2rem w-2rem border-1 border-300 text-900 inline-flex justify-content-center align-items-center flex-shrink-0 border-round mr-2 cursor-pointer hover:surface-100 transition-duration-150 transition-colors">S</div>
+                <div className="h-2rem w-2rem border-1 border-300 text-900 inline-flex justify-content-center align-items-center flex-shrink-0 border-round mr-2 cursor-pointer hover:surface-100 transition-duration-150 transition-colors border-blue-500 border-2 text-blue-500">M</div>
+                <div className="h-2rem w-2rem border-1 border-300 text-900 inline-flex justify-content-center align-items-center flex-shrink-0 border-round mr-2 cursor-pointer hover:surface-100 transition-duration-150 transition-colors">L</div>
+                <div className="h-2rem w-2rem border-1 border-300 text-900 inline-flex justify-content-center align-items-center flex-shrink-0 border-round mr-2 cursor-pointer hover:surface-100 transition-duration-150 transition-colors">XL</div>
               </div>
-              <button
-                aria-label="Add to Cart"
-                className="p-button p-component w-full mb-5"
-              >
-                <span className="p-button-icon p-c p-button-icon-left pi pi-shopping-cart" />
-                <span className="p-button-label p-c">Add to Cart</span>
-                <span role="presentation" className="p-ink" />
-              </button>
-              <ul className="list-none p-0 m-0 text-sm text-600">
-                <li className="flex align-items-center mb-3">
-                  <i className="pi pi-credit-card mr-2" />
-                  <span>Paiement when recieving</span>
-                </li>
-                <li className="flex align-items-center mb-3">
-                  <i className="pi pi-send mr-2" />
-                  <span>Safe shipping</span>
-                </li>
-                <li className="flex align-items-center">
-                  <i className="pi pi-refresh mr-2" />
-                  <span>30 Days Return Policy</span>
-                </li>
-              </ul>
+              <button aria-label="Add to Cart" className="p-button p-component w-full"><span className="p-button-icon p-c p-button-icon-left pi pi-shopping-cart" /><span className="p-button-label p-c">Add to Cart</span><span role="presentation" className="p-ink" /></button>
             </div>
           </div>
         </div>
-      </Dialog>
+
+      </Dialog >
 
 
       <div className="surface-section px-4 py-8 md:px-6 lg:px-8">
@@ -379,6 +382,8 @@ const DataViewDemo = () => {
 
 
       <div className="dataview-demo ">
+
+        <Toast ref={toast} />
         <div className="card">
           <DataView
             value={products.filter((item: any, index: number) => item.name.includes(search) && categoryselected.indexOf(item.category) !== -1)}

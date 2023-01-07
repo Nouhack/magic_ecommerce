@@ -10,63 +10,13 @@ import { useState } from 'react';
 
 
 
-export default function Checkoutsidebar() {
+export default function Checkoutsidebar(props: any) {
 
   const [showcheckoutmodal, setshowcheckoutmodal] = useState(false)
 
-  const [selecteditems, setselecteditems] = useState([
-    {
-      name: 'name',
-      price: '20 DA',
-      category: 'drink',
-      quantity: 1,
-      image: 'https://images.unsplash.com/photo-1602143407151-7111542de6e8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
-    },
-
-    {
-      name: 'name 2',
-      price: '10 DA',
-      category: 'drink',
-      quantity: 3,
-      image: 'https://images.unsplash.com/photo-1570831739435-6601aa3fa4fb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1026&q=80'
-    },
-
-    {
-      name: 'name 2',
-      price: '10 DA',
-      category: 'drink',
-      quantity: 3,
-      image: 'https://images.unsplash.com/photo-1570831739435-6601aa3fa4fb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1026&q=80'
-    },
-    {
-      name: 'name 2',
-      price: '10 DA',
-      category: 'drink',
-      quantity: 3,
-      image: 'https://images.unsplash.com/photo-1570831739435-6601aa3fa4fb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1026&q=80'
-    },
-    {
-      name: 'name 2',
-      price: '10 DA',
-      category: 'drink',
-      quantity: 3,
-      image: 'https://images.unsplash.com/photo-1570831739435-6601aa3fa4fb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1026&q=80'
-    },
-    {
-      name: 'name 2',
-      price: '10 DA',
-      category: 'drink',
-      quantity: 3,
-      image: 'https://images.unsplash.com/photo-1570831739435-6601aa3fa4fb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1026&q=80'
-    },
-    {
-      name: 'name 2',
-      price: '10 DA',
-      category: 'drink',
-      quantity: 3,
-      image: 'https://images.unsplash.com/photo-1570831739435-6601aa3fa4fb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1026&q=80'
-    },
-  ]);
+  const [selecteditems, setselecteditems] = useState(
+    ''
+  )
   const [visible, setVisible] = useState(false);
 
   return (
@@ -226,7 +176,7 @@ export default function Checkoutsidebar() {
               </button>
               <div className="border-right-1 border-300 mx-3" />
               <span className="text-900 text-xl font-medium inline-flex align-items-center ml-1">
-                Your Cart
+                Produits ajoutés
               </span>
             </div>
             <div className="flex-auto overflow-y-auto py-5 px-3 md:px-5">
@@ -235,7 +185,18 @@ export default function Checkoutsidebar() {
 
 
                 {
-                  selecteditems.map((item, index) => {
+
+
+                  props.list.map((item1: any) => (
+                    {
+                      name: item1.name,
+                      price: item1.price,
+                      category: item1.category,
+                      quantity: 1,
+                      image: item1.image
+
+                    }
+                  )).map((item: any, index: any) => {
                     return (
                       <li key={index} className="flex align-items-center mb-4">
                         <img
@@ -325,16 +286,14 @@ export default function Checkoutsidebar() {
           </div>
         </div>
       </Sidebar>
-      <div>
+      <div className=''>
 
         <div onClick={(e) => setVisible(true)} className='flex align-items-center'>
 
-          <i className="pi pi-shopping-cart mr-3  text-xl p-overlay-badge"
-            onClick={(e) => setVisible(true)}
+          <i className="pi pi-shopping-cart mr-3 text-xl  p-overlay-badge"
           >
             <span className="p-badge p-component p-badge-dot" />
           </i>
-          <span className="hidden lg:inline">Cart</span>
           <span role="presentation" className="p-ink" />
         </div>
       </div>

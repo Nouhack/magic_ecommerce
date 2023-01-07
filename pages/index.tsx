@@ -1,14 +1,14 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from '@next/font/google'
-import { Button } from 'primereact/button';
 import Carousel_component from '../components/Carousel';
 import Hero from '../components/Hero';
 import Productslist from '../components/Productslist'
+import Header from '../components/Header'
+import { useState } from 'react'
 
 
 
 export default function Home() {
+  const [selectedProducts, setselectedProducts] = useState([])
   return (
     <>
       <Head>
@@ -17,11 +17,19 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Header list={selectedProducts} />
       <div className='' >
         <Hero />
+
         <Carousel_component />
-        <Productslist />
+        <Productslist val={selectedProducts} selected={setselectedProducts} />
+        <button onClick={() => {
+          console.log(selectedProducts)
+        }}>slkdfjsldkfjsdlfkjsdfk</button>
       </div>
+
     </>
+
   )
+
 }
