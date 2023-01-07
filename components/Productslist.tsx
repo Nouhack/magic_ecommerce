@@ -258,18 +258,6 @@ const DataViewDemo = (props: any) => {
       </Sidebar>
 
 
-        /*
-      *
-      <Carousel className='h-full w-full' value={selecteditem.imagesdetail} numVisible={1} numScroll={1} orientation="horizontal" verticalViewPortHeight="360px"
-        style={{ maxWidth: '400px', height: '360px' }}
-        itemTemplate={(e) => {
-          return (
-            <img src={e.image} alt='none' className='w-full h-full' style={{ objectFit: 'cover' }} />
-          )
-        }} />
-      *
-      * */
-
       <Dialog visible={openproductdetail} className='w-full md:w-8' position='top' modal onHide={() => setopenproductdetail(false)}
         draggable={true} resizable={true}>
 
