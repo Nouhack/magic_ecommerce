@@ -259,11 +259,11 @@ const DataViewDemo = (props: any) => {
       </Sidebar>
 
 
-      <Dialog visible={openproductdetail} className='w-full md:w-8' position='top' modal onHide={() => setopenproductdetail(false)}
+      <Dialog visible={openproductdetail} className='w-full md:w-8 ' position='top' modal onHide={() => setopenproductdetail(false)}
         draggable={true} resizable={true}>
 
         <div id="pr_id_5_content" className="p-dialog-content" style={{ paddingTop: '1rem' }}>
-          <div className="grid relative">
+          <div className="grid relative bg-blue-400 overflow-y-auto overflow-x-hidden">
             <div className="col-12 lg:col-6 text-center ">
 
               <Galleria value={selecteditem.imagesdetail} numVisible={5} circular style={{ maxWidth: '640px' }}
@@ -279,13 +279,16 @@ const DataViewDemo = (props: any) => {
                 <div className="text-xl text-900">{selecteditem.price} da</div>
                 <div className="flex align-items-center"><span className="mr-3 flex"><i className="pi pi-star-fill text-yellow-500 mr-1" /><i className="pi pi-star-fill text-yellow-500 mr-1" /><i className="pi pi-star-fill text-yellow-500 mr-1" /><i className="pi pi-star-fill text-yellow-500 mr-1" /><i className="pi pi-star-fill text-yellow-500" /></span></div>
               </div>
-              <p className="p-0 mt-0 mb-3 line-height-3 text-700">{selecteditem.description}</p>
+              <div className='bg-red-400'>
+                {selecteditem.description
+              }
+              </div>
               <div className="font-bold text-900 mb-3">Couleurs</div>
               <div className="flex align-items-center mb-5">
                 <div className="w-2rem h-2rem flex-shrink-0 border-circle bg-cyan-500 mr-3 cursor-pointer border-2 border-white transition-all transition-duration-300" style={{ boxShadow: '0 0 0 0.2rem var(--cyan-500)' }} />
                 <div className="w-2rem h-2rem flex-shrink-0 border-circle bg-purple-500 mr-3 cursor-pointer border-2 border-white transition-all transition-duration-300" />
                 <div className="w-2rem h-2rem flex-shrink-0 border-circle bg-indigo-500 cursor-pointer border-2 border-white transition-all transition-duration-300" /></div>
-              <div className="mb-3 flex align-items-center justify-content-between"><span className="font-bold text-900">Size l</span><a tabIndex={0} className="cursor-pointer text-600 text-sm flex align-items-center">Size Guide <i className="ml-1 pi pi-angle-right" /></a></div>
+              <div className="mb-3 flex align-items-center justify-content-between"><span className="font-bold text-900">Size</span><a tabIndex={0} className="cursor-pointer text-600 text-sm flex align-items-center">Size Guide <i className="ml-1 pi pi-angle-right" /></a></div>
               <div className="flex align-items-center mb-3 text-base">
                 <div className="h-2rem w-2rem border-1 border-300 text-900 inline-flex justify-content-center align-items-center flex-shrink-0 border-round mr-2 cursor-pointer hover:surface-100 transition-duration-150 transition-colors">S</div>
                 <div className="h-2rem w-2rem border-1 border-300 text-900 inline-flex justify-content-center align-items-center flex-shrink-0 border-round mr-2 cursor-pointer hover:surface-100 transition-duration-150 transition-colors border-blue-500 border-2 text-blue-500">M</div>
