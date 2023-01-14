@@ -18,6 +18,7 @@ const DataViewDemo = (props: any) => {
 
   const toast = useRef(null);
   let { categories } = attributes;
+  console.log(categories)
   const [showfilter, setshowfilter] = useState(false)
   const [selecteditem, setselecteditem] = useState(
     {

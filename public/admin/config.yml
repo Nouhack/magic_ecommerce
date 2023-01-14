@@ -32,11 +32,11 @@ collections:
                     - { label: 'Color', name: 'color', widget: 'color' }
 
                 - label : "Sizes"
-                  name : "sized"
+                  name : "sizes"
                   widget: list
                   fields:
-                    - label: "Align Content"
-                      name: "align"
+                    - label: "Size"
+                      name: "size"
                       widget: "select"
                       options: ["S", "M", "L","XL","none"]
 
