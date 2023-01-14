@@ -18,6 +18,19 @@ categories:
         images:
           - image: img/fb_img_1644366345329.jpg
           - image: img/20230114_135825.jpg
+      - name: hats
+        thumbnail: img/wp10384238.jpg
+        price: 5000
+        description: "this is a simple description this is a simple description this is
+          a simple description this is a simple description this is a simple
+          description this is a simple description this is a simple description
+          this is a simple description this is a simple description this is a
+          simple description this is a simple description this is a simple
+          description this is a simple description this is a simple description
+          this is a simple description this is a simple description this is a
+          simple description "
+        images:
+          - image: img/20230114_135825.jpg
 ---
 Welcome to my awesome page about cats of the internet.
 
