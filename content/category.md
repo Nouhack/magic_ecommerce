@@ -31,6 +31,21 @@ categories:
         images:
           - image: img/fb_img_1644366345329.jpg
     name: category 1
+  - name: vests
+    products:
+      - name: smater
+        thumbnail: img/20230114_135825.jpg
+        price: 3000
+        description: lsdkfjsldkfjlsdkfjsldkfjlsdkfjsldkfjlsdkfjsldkfjlsdkfjsldkfjlsdkfjsldkfjlsdkfjsldkfjlsdkfjsldkfjlsdkfjsldkfjlsdkfjsldkfjlsdkfjsldkfjlsdkfjsldkfjlsdkfjsldkfjlsdkfjsldkfjlsdkfjsldkfjlsdkfjsldkfjlsdkfjsldkfjlsdkfjsldkfjlsdkfjsldkfjlsdkfjsldkfj
+        colors:
+          - color: "#ff1d1d"
+          - color: "#5ff829"
+        sized:
+          - align: S
+          - align: M
+        images:
+          - image: img/20230114_135825.jpg
+          - image: img/fb_img_1644366345329.jpg
 ---
 Welcome to my awesome page about cats of the internet.
 
