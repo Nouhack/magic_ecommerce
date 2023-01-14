@@ -288,10 +288,9 @@ export default function Checkoutsidebar(props: any) {
       </Sidebar>
       <div className=''>
 
-        <div onClick={(e) => setVisible(true)} className='flex align-items-center'>
+        <div onClick={(e) => setVisible(true)} className='flex align-items-center p-3 '>
 
-          <i className="pi pi-shopping-cart mr-3 text-xl  p-overlay-badge"
-          >
+          <i className="pi pi-shopping-cart mr-3 text-xl  p-overlay-badge">
             <span className="p-badge p-component p-badge-dot" />
           </i>
           <span role="presentation" className="p-ink" />

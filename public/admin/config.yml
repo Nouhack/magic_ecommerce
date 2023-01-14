@@ -24,6 +24,23 @@ collections:
                 - { label: "Miniature", name: "thumbnail", widget: "image"}
                 - { label: "Prix", name: "price", widget: "number", value_type: 'float'}
                 - { label: "Description", name: "description", widget: "text"}
+          
+                - label : "Colors"
+                  name : "colors"
+                  widget: list
+                  fields:
+                    - { label: 'Color', name: 'color', widget: 'color' }
+
+                - label : "Sizes"
+                  name : "sized"
+                  widget: list
+                  fields:
+                    - label: "Align Content"
+                      name: "align"
+                      widget: "select"
+                      options: ["S", "M", "L","XL","none"]
+
+
                 - label : "Images"
                   name : "images"
                   widget: list

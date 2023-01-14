@@ -27,6 +27,7 @@ const CarouselDemo = () => {
     },
 
   ]);
+
   const responsiveOptions = [
     {
       breakpoint: '1024px',
@@ -49,8 +50,6 @@ const CarouselDemo = () => {
 
   const productTemplate = (product: any) => {
     return (
-
-
       <div className="surface-card m-3 border-round shadow-2">
         <img src={product.image} className="border-round-top w-full" alt="product" />
         <div className="flex flex-column w-full p-4">

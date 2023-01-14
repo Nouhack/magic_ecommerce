@@ -1,11 +1,9 @@
-import Head from 'next/head'
-import Carousel_component from '../components/Carousel';
-import Hero from '../components/Hero';
-import Productslist from '../components/Productslist'
-import Header from '../components/Header'
-import { useState } from 'react'
-
-
+import Head from "next/head"
+import Carousel_component from "../components/Carousel"
+import Hero from "../components/Hero"
+import Productslist from "../components/Productslist"
+import Header from "../components/Header"
+import { useState } from "react"
 
 export default function Home() {
   const [selectedProducts, setselectedProducts] = useState([])
@@ -18,18 +16,12 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header list={selectedProducts} />
-      <div className='' >
+      <div className="">
         <Hero />
 
         <Carousel_component />
         <Productslist val={selectedProducts} selected={setselectedProducts} />
-        <button onClick={() => {
-          console.log(selectedProducts)
-        }}>slkdfjsldkfjsdlfkjsdfk</button>
       </div>
-
-    </>
-
+   </>
   )
-
 }
