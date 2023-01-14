@@ -6,7 +6,9 @@ categories:
       - name: vest
         thumbnail: img/20230114_135825.jpg
         price: 5000
-        description: dfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfg
+        description: "no wach rani hab n9oul hwa no wach rani hab n9oul hwa no wach rani
+          hab n9oul hwa no wach rani hab n9oul hwa no wach rani hab n9oul hwa no
+          wach rani hab n9oul hwa no wach rani hab n9oul hwa "
         colors:
           - color: "#ff0000"
           - color: "#0395ff"
