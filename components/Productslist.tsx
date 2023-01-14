@@ -285,7 +285,7 @@ const DataViewDemo = (props: any) => {
                 <div className="w-2rem h-2rem flex-shrink-0 border-circle bg-cyan-500 mr-3 cursor-pointer border-2 border-white transition-all transition-duration-300" style={{ boxShadow: '0 0 0 0.2rem var(--cyan-500)' }} />
                 <div className="w-2rem h-2rem flex-shrink-0 border-circle bg-purple-500 mr-3 cursor-pointer border-2 border-white transition-all transition-duration-300" />
                 <div className="w-2rem h-2rem flex-shrink-0 border-circle bg-indigo-500 cursor-pointer border-2 border-white transition-all transition-duration-300" /></div>
-              <div className="mb-3 flex align-items-center justify-content-between"><span className="font-bold text-900">Size</span><a tabIndex={0} className="cursor-pointer text-600 text-sm flex align-items-center">Size Guide <i className="ml-1 pi pi-angle-right" /></a></div>
+              <div className="mb-3 flex align-items-center justify-content-between"><span className="font-bold text-900">Size l</span><a tabIndex={0} className="cursor-pointer text-600 text-sm flex align-items-center">Size Guide <i className="ml-1 pi pi-angle-right" /></a></div>
               <div className="flex align-items-center mb-3 text-base">
                 <div className="h-2rem w-2rem border-1 border-300 text-900 inline-flex justify-content-center align-items-center flex-shrink-0 border-round mr-2 cursor-pointer hover:surface-100 transition-duration-150 transition-colors">S</div>
                 <div className="h-2rem w-2rem border-1 border-300 text-900 inline-flex justify-content-center align-items-center flex-shrink-0 border-round mr-2 cursor-pointer hover:surface-100 transition-duration-150 transition-colors border-blue-500 border-2 text-blue-500">M</div>
