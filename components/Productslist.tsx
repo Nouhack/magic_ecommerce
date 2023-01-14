@@ -20,6 +20,12 @@ const DataViewDemo = (props: any) => {
   let { categories } = attributes;
   console.log(categories)
   const [showfilter, setshowfilter] = useState(false)
+  // selected color
+  const [selectedcolor, setselectedcolor] = useState('')
+  //=========================================
+  // selected size
+  const [selectedsize, setselectedsize] = useState('')
+
   const [selecteditem, setselecteditem] = useState(
     {
       name: "",
@@ -27,7 +33,9 @@ const DataViewDemo = (props: any) => {
       price: null,
       description: '',
       category: "",
-      imagesdetail: []
+      imagesdetail: [],
+      colors: [],
+      sizes: []
     }
   )
   const [search, setsearch] = useState('')
@@ -52,7 +60,10 @@ const DataViewDemo = (props: any) => {
         price: item2.price,
         category: item.name,
         description: item2.description,
-        imagesdetail: item2.images
+        imagesdetail: item2.images,
+        colors: item2.colors,
+        sizes: item2.sizes
+
       })
       )
     )[0]
@@ -90,17 +101,29 @@ const DataViewDemo = (props: any) => {
     }
   }
 
+  const addToCart = (data: any) => {
+
+    props.selected((old: any) => !old.includes(data) ? [...old, data] : old)
+
+    if (!props.val.includes(data)) {
+      toast.current.show({ severity: 'info', summary: 'Success Message', detail: 'Order submitted' });
+    } else {
+
+      toast.current.show({ severity: 'error', summary: 'Success Message', detail: 'Order submitted' });
+    }
+  }
+
+  const showDetail = (data: any) => {
+
+    setselecteditem(data)
+    setopenproductdetail(true)
+  }
+
   const renderListItem = (data: any) => {
     return (
-      <div className="col-12 "
-      >
+      <div className="col-12 ">
         <div
 
-          onClick={() => {
-            setselecteditem(data)
-            setopenproductdetail(true)
-
-          }}
           className="product-list-item">
           <img src={`${data.image}`} alt={data.name} />
           <div
@@ -113,14 +136,16 @@ const DataViewDemo = (props: any) => {
           </div>
           <div className="product-list-action">
             <span className="product-price">{data.price} DA</span>
-            <Button icon="pi pi-shopping-cart p-button-outlined p-button-secondary" label="Add to Cart "
+            <Button icon="pi pi-shopping-cart p-button-outlined p-button-secondary" label="More details"
 
               className="p-button-rounded p-button-outlined p-button-secondary w-full text-center "
+              onClick={() => {
+                showDetail(data)
+              }}
               style={{
                 display: 'inline-block'
               }}
               disabled={data.inventoryStatus === 'OUTOFSTOCK'}></Button>
-
           </div>
         </div>
       </div>
@@ -134,11 +159,6 @@ const DataViewDemo = (props: any) => {
       >
         <div className="p-2 h-full">
           <div
-
-            onClick={() => {
-              setselecteditem(data)
-              setopenproductdetail(true)
-            }}
             className="h-full relative mb-2">
             <img
               src={data.image}
@@ -161,19 +181,11 @@ const DataViewDemo = (props: any) => {
             <div className="font-medium line-height-1">{data.category}</div>
           </div>
 
-          <Button icon="pi pi-shopping-cart p-button-outlined p-button-secondary" label="Add to Cart "
+          <Button icon="pi pi-shopping-cart p-button-outlined p-button-secondary" label="More details"
 
             className="p-button-rounded p-button-outlined p-button-secondary w-full text-center "
             onClick={() => {
-              props.selected((old: any) => !old.includes(data) ? [...old, data] : old)
-
-              if (!props.val.includes(data)) {
-                toast.current.show({ severity: 'info', summary: 'Success Message', detail: 'Order submitted' });
-              } else {
-
-                toast.current.show({ severity: 'error', summary: 'Success Message', detail: 'Order submitted' });
-              }
-
+              showDetail(data)
             }}
             style={{
               display: 'inline-block'
@@ -197,6 +209,7 @@ const DataViewDemo = (props: any) => {
       return renderGridItem(product);
   }
 
+  // THIS IS THE HEADER OF DATATABLE OF THE PRODUCT LIST
   const renderHeader = () => {
     return (
       <div className="grid grid-nogutter">
@@ -232,6 +245,8 @@ const DataViewDemo = (props: any) => {
   }
   return (
     <div className='bg'>
+
+      { /* THIS IS THE FILTER SIDEBAR */}
       <Sidebar visible={showfilter} position="top" className='h-auto' onHide={() => setshowfilter(false)}>
 
         <div className='flex align-items-center md:flex-row gap-3 md:gap-0 flex-column justify-content-center '>
@@ -257,13 +272,14 @@ const DataViewDemo = (props: any) => {
 
         </div>
       </Sidebar>
+      { /* END OF FILTER SLIDER*/}
 
-
+      {/* THIS IS THE DIALOG OF PRODUCT DETAIL */}
       <Dialog visible={openproductdetail} className='w-full md:w-8 ' position='top' modal onHide={() => setopenproductdetail(false)}
         draggable={true} resizable={true}>
 
         <div id="pr_id_5_content" className="p-dialog-content" style={{ paddingTop: '1rem' }}>
-          <div className="grid relative bg-blue-400 overflow-y-auto overflow-x-hidden">
+          <div className="grid relative overflow-y-auto overflow-x-hidden">
             <div className="col-12 lg:col-6 text-center ">
 
               <Galleria value={selecteditem.imagesdetail} numVisible={5} circular style={{ maxWidth: '640px' }}
@@ -279,29 +295,75 @@ const DataViewDemo = (props: any) => {
                 <div className="text-xl text-900">{selecteditem.price} da</div>
                 <div className="flex align-items-center"><span className="mr-3 flex"><i className="pi pi-star-fill text-yellow-500 mr-1" /><i className="pi pi-star-fill text-yellow-500 mr-1" /><i className="pi pi-star-fill text-yellow-500 mr-1" /><i className="pi pi-star-fill text-yellow-500 mr-1" /><i className="pi pi-star-fill text-yellow-500" /></span></div>
               </div>
-              <div className='bg-red-400'>
-                {selecteditem.description
-              }
+              <div className=''>
+                <p className=" p-0 mt-0 mb-3 line-height-3 text-700">{selecteditem.description}</p>
               </div>
               <div className="font-bold text-900 mb-3">Couleurs</div>
               <div className="flex align-items-center mb-5">
-                <div className="w-2rem h-2rem flex-shrink-0 border-circle bg-cyan-500 mr-3 cursor-pointer border-2 border-white transition-all transition-duration-300" style={{ boxShadow: '0 0 0 0.2rem var(--cyan-500)' }} />
-                <div className="w-2rem h-2rem flex-shrink-0 border-circle bg-purple-500 mr-3 cursor-pointer border-2 border-white transition-all transition-duration-300" />
-                <div className="w-2rem h-2rem flex-shrink-0 border-circle bg-indigo-500 cursor-pointer border-2 border-white transition-all transition-duration-300" /></div>
+
+                {
+                  selecteditem.colors.length === 0 ?
+                    (
+
+
+                      <div className="w-2rem h-2rem flex-shrink-0 border-circle mr-3 cursor-pointer border-2 border-white transition-all transition-duration-300 flex align-items-center justify-content-center" style={{ boxShadow: "" === selectedcolor ? '0 0 0 0.2rem var(--cyan-500)' : 'none' }}
+                        onClick={() => {
+                          setselectedcolor('')
+                        }}
+                      >
+                        <i className="pi pi-ban"></i>
+                      </div>
+                    ) :
+
+                    selecteditem.colors.map((item: any, index: number) => {
+                      return (
+                        <div className="w-2rem h-2rem flex-shrink-0 border-circle mr-3 cursor-pointer border-2 border-white transition-all transition-duration-300" style={{ backgroundColor: item.color, boxShadow: item.color === selectedcolor || (selectedcolor === '' && index === 0) ? '0 0 0 0.2rem var(--cyan-500)' : 'none' }}
+                          onClick={() => {
+                            setselectedcolor(item.color)
+                          }}
+                        />
+                      )
+                    })
+                }
+
+              </div>
               <div className="mb-3 flex align-items-center justify-content-between"><span className="font-bold text-900">Size</span><a tabIndex={0} className="cursor-pointer text-600 text-sm flex align-items-center">Size Guide <i className="ml-1 pi pi-angle-right" /></a></div>
               <div className="flex align-items-center mb-3 text-base">
-                <div className="h-2rem w-2rem border-1 border-300 text-900 inline-flex justify-content-center align-items-center flex-shrink-0 border-round mr-2 cursor-pointer hover:surface-100 transition-duration-150 transition-colors">S</div>
-                <div className="h-2rem w-2rem border-1 border-300 text-900 inline-flex justify-content-center align-items-center flex-shrink-0 border-round mr-2 cursor-pointer hover:surface-100 transition-duration-150 transition-colors border-blue-500 border-2 text-blue-500">M</div>
-                <div className="h-2rem w-2rem border-1 border-300 text-900 inline-flex justify-content-center align-items-center flex-shrink-0 border-round mr-2 cursor-pointer hover:surface-100 transition-duration-150 transition-colors">L</div>
-                <div className="h-2rem w-2rem border-1 border-300 text-900 inline-flex justify-content-center align-items-center flex-shrink-0 border-round mr-2 cursor-pointer hover:surface-100 transition-duration-150 transition-colors">XL</div>
+                {
+                  selecteditem.sizes.map((item, index) => {
+                    return (
+                      <div className={`h-2rem w-2rem border-1 border-300 text-900 inline-flex justify-content-center align-items-center flex-shrink-0 border-round mr-2 cursor-pointer hover:surface-100 transition-duration-150 transition-colors ${selectedsize === item.size && ' border-blue-500 border-2 text-blue-500'}`}
+                        onClick={() => {
+                          setselectedsize(item.size)
+                        }}
+                      >
+                        {item.size}
+                      </div>
+                    )
+                  })
+                }
               </div>
-              <button aria-label="Add to Cart" className="p-button p-component w-full"><span className="p-button-icon p-c p-button-icon-left pi pi-shopping-cart" /><span className="p-button-label p-c">Add to Cart</span><span role="presentation" className="p-ink" /></button>
+
+              <Button icon="pi pi-shopping-cart p-button-outlined p-button-secondary" label="Add to Cart "
+
+                className="p-button-rounded p-button-outlined p-button-secondary w-full text-center "
+                style={{
+                  display: 'inline-block'
+                }}
+                onClick={() => {
+                  const added_product = { ...selecteditem, colors: selectedcolor.length === 0  ? selecteditem.colors[0].color : selectedcolor , sizes: selectedsize }
+                  //console.log(selecteditem , 'hada hwa')
+                  addToCart(added_product)
+                  console.log(added_product, 'kkkkkkkkkkkkkkkkk')
+                }}
+              ></Button>
             </div>
           </div>
         </div>
 
       </Dialog >
 
+      {/* THIS IS THE END OF  DIALOG OF PRODUCT DETAIL */}
 
       <div className="surface-section px-4 py-8 md:px-6 lg:px-8">
         <div className="flex flex-wrap">
