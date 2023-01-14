@@ -302,7 +302,7 @@ const DataViewDemo = (props: any) => {
               <div className="flex align-items-center mb-5">
 
                 {
-                  selecteditem.colors.length === 0 ?
+                  !selecteditem.colors ?
                     (
 
 
@@ -315,7 +315,7 @@ const DataViewDemo = (props: any) => {
                       </div>
                     ) :
 
-                    selecteditem.colors.map((item: any, index: number) => {
+                    selecteditem.colors?.map((item: any, index: number) => {
                       return (
                         <div className="w-2rem h-2rem flex-shrink-0 border-circle mr-3 cursor-pointer border-2 border-white transition-all transition-duration-300" style={{ backgroundColor: item.color, boxShadow: item.color === selectedcolor || (selectedcolor === '' && index === 0) ? '0 0 0 0.2rem var(--cyan-500)' : 'none' }}
                           onClick={() => {
@@ -329,19 +329,44 @@ const DataViewDemo = (props: any) => {
               </div>
               <div className="mb-3 flex align-items-center justify-content-between"><span className="font-bold text-900">Size</span><a tabIndex={0} className="cursor-pointer text-600 text-sm flex align-items-center">Size Guide <i className="ml-1 pi pi-angle-right" /></a></div>
               <div className="flex align-items-center mb-3 text-base">
+
+
+
                 {
-                  selecteditem.sizes.map((item, index) => {
-                    return (
-                      <div className={`h-2rem w-2rem border-1 border-300 text-900 inline-flex justify-content-center align-items-center flex-shrink-0 border-round mr-2 cursor-pointer hover:surface-100 transition-duration-150 transition-colors ${selectedsize === item.size && ' border-blue-500 border-2 text-blue-500'}`}
+                  !selecteditem.sizes?
+                    (
+
+
+
+                      <div className={`h-2rem w-2rem border-1 border-300 text-900 inline-flex justify-content-center align-items-center flex-shrink-0 border-round mr-2 cursor-pointer hover:surface-100 transition-duration-150 transition-colors ${selectedsize === '' ? ' border-blue-500 border-2 text-blue-500' : 'none'}`}
                         onClick={() => {
-                          setselectedsize(item.size)
+                          setselectedsize('')
                         }}
                       >
-                        {item.size}
+                        <i className="pi pi-ban"></i>
                       </div>
-                    )
-                  })
+                    ) :
+
+                    selecteditem.sizes?.map((item: any, index: number) => {
+                      return (
+
+                      <div className={`h-2rem w-2rem border-1 border-300 text-900 inline-flex justify-content-center align-items-center flex-shrink-0 border-round mr-2 cursor-pointer hover:surface-100 transition-duration-150 transition-colors ${selectedsize === item.size || (selectedsize === '' && index === 0) ? ' border-blue-500 border-2 text-blue-500' : 'none'}`}
+                          onClick={() => {
+                            setselectedsize(item.size)
+                          }}
+                        >
+                      {item.size}
+                       </div>
+                      )
+                    })
                 }
+
+
+
+
+
+
+                
               </div>
 
               <Button icon="pi pi-shopping-cart p-button-outlined p-button-secondary" label="Add to Cart "
