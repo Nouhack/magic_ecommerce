@@ -166,12 +166,12 @@ const DataViewDemo = (props: any) => {
   const renderGridItem = (data: any) => {
     return (
       <div className=" mt-4 col-12 md:col-6 lg:col-4 ">
-        <div className="p-2 ">
+        <div className="p-2 h-full ">
           <div
             onClick={() => {
               showDetail(data);
             }}
-            className="shadow-2 p-4 cursor-pointer surface-card border-round"
+            className="shadow-2 p-4  h-full cursor-pointer surface-card border-round"
           >
             <div className="relative mb-3">
               <span
@@ -180,7 +180,7 @@ const DataViewDemo = (props: any) => {
               >
                 {data.category}
               </span>
-              <img src={data.image} className="w-full" />
+              <img src={data.image} className="w-full h-full" />
             </div>
             <div className="flex justify-content-between align-items-center mb-3">
               <span className="text-900 font-medium text-xl">{data.name}</span>
