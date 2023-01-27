@@ -31,6 +31,19 @@ categories:
           simple description "
         images:
           - image: img/20230114_135825.jpg
+      - name: T-shirt
+        thumbnail: https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80
+        price: 4000
+        description: "this t shirt is from nike , expense quality and design and also
+          it's variation of colors "
+        colors:
+          - color: "#e1e1e1"
+          - color: "#ff0f0f"
+          - color: "#0082ff"
+        sizes: []
+        images:
+          - image: https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80
+          - image: https://images.unsplash.com/photo-1522706604291-210a56c3b376?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80
   - name: homme
     products:
       - name: vest 1
