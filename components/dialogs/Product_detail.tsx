@@ -110,6 +110,9 @@ export default function Product_detail(props: any) {
                 })
               )}
             </div>
+            <button onClick={() => console.log(!props.selecteditem.sizes)}>
+              shwwwww
+            </button>
             <div className="mb-3 flex align-items-center justify-content-between">
               <span className="font-bold text-900">Size</span>
               <a

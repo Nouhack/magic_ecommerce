@@ -284,9 +284,9 @@ const DataViewDemo = (props: any) => {
       <Product_detail
         openproductdetail={openproductdetail}
         setopenproductdetail={setopenproductdetail}
+        thumbnailTemplate={thumbnailTemplate}
         selecteditem={selecteditem}
         setselecteditem={setselecteditem}
-        thumbnailTemplate={thumbnailTemplate}
         selectedcolor={selectedcolor}
         setselectedcolor={setselectedcolor}
         selectedsize={selectedsize}
