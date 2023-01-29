@@ -175,6 +175,19 @@ export default function Product_detail(props: any) {
           </div>
         </div>
       </div>
+      <button
+        onClick={() =>
+          console.log({
+            ...props.selecteditem,
+            colors:
+              props.selectedcolor === ""
+                ? props.selecteditem.colors[0].color
+                : props.selectedcolor,
+          })
+        }
+      >
+        test
+      </button>
     </Dialog>
   );
 }
