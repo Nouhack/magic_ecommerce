@@ -192,6 +192,7 @@ export default function Checkoutsidebar(props: any) {
                   .map((item: any, index: any) => {
                     return (
                       <CheckoutSidebarItem
+                        settotal={props.settotal}
                         item={item}
                         index={index}
                         list={props.list}
@@ -207,13 +208,14 @@ export default function Checkoutsidebar(props: any) {
                   Total Amount{" "}
                   <span className="text-600 text-sm">incl. VAT</span>
                 </span>
-                <span className="text-900 font-bold">{700}</span>
+                <span className="text-900 font-bold">{props.total}</span>
               </div>
 
               <button
                 onClick={() => {
-                  setshowcheckoutmodal(true);
-                  setVisible(false);
+                  console.log(props.list);
+                  //setshowcheckoutmodal(true);
+                  //setVisible(false);
                 }}
                 aria-label="Check Out"
                 className="p-button p-component p-button-success mb-3 w-full"

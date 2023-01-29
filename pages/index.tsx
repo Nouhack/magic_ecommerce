@@ -7,6 +7,8 @@ import { useState } from "react";
 
 export default function Home() {
     const [selectedProducts, setselectedProducts] = useState([]);
+    const [total_sum, settotal_sum] = useState(0);
+
     return (
         <>
             <Head>
@@ -15,11 +17,11 @@ export default function Home() {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <Header list={selectedProducts} setlist={setselectedProducts} />
+            <Header list={selectedProducts} total={total_sum} settotal={settotal_sum} setlist={setselectedProducts} />
             <div className="">
                 <Hero />
                 <Carousel_component />
-                <Productslist val={selectedProducts} selected={setselectedProducts} />
+                <Productslist settotal={settotal_sum} val={selectedProducts} selected={setselectedProducts} />
             </div>
         </>
     );

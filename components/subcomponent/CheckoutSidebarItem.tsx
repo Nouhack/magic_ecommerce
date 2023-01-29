@@ -4,7 +4,7 @@ import { formatter } from "../../utils/Money_formatter";
 type Props = {};
 
 export default function CheckoutSidebarItem(props: any) {
-  const [quantity, setquantity] = useState(1);
+  const [quantity, setquantity] = useState(props.item.quantity);
   const add_quantity = () => {
     // modify the item
     let modified_item = props.item;
@@ -62,7 +62,10 @@ export default function CheckoutSidebarItem(props: any) {
               type="button"
               className="p-inputnumber-button p-inputnumber-button-up p-button p-button-icon-only p-component p-button-text py-1 px-1"
               tabIndex={-1}
-              onClick={() => add_quantity()}
+              onClick={() => {
+                add_quantity();
+                props.settotal((prev) => prev + props.item.price);
+              }}
             >
               <span className="p-button-icon pi pi-plus" />
               <span role="presentation" className="p-ink" />

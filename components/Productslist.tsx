@@ -119,6 +119,7 @@ const DataViewDemo = (props: any) => {
     } else {
       console.log("Object does not exist!");
       props.selected((old) => [...old, data]);
+      props.settotal((prev) => prev + selecteditem.price);
       toast.current.show({
         severity: "success",
         summary: "Success Message",
@@ -292,6 +293,7 @@ const DataViewDemo = (props: any) => {
         selectedsize={selectedsize}
         setselectedsize={setselectedsize}
         addToCart={addToCart}
+        settotal={props.settotal}
       />
 
       {/* THIS IS THE END OF  DIALOG OF PRODUCT DETAIL */}

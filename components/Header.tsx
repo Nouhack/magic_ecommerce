@@ -179,7 +179,12 @@ export default function Header(props: any) {
         <ul className="list-none p-0 m-0 flex">
           <li className="flex">
             <a className="p-ripple text-900 font-medium inline-flex align-items-center cursor-pointer px-2 sm:px-3 hover:text-primary">
-              <Checkoutsidebar setlist={props.setlist} list={props.list} />
+              <Checkoutsidebar
+                total={props.total}
+                settotal={props.settotal}
+                setlist={props.setlist}
+                list={props.list}
+              />
             </a>
           </li>
         </ul>
