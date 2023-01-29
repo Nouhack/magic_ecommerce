@@ -6,7 +6,9 @@ import { InputTextarea } from "primereact/inputtextarea";
 import { Dialog } from "primereact/dialog";
 
 import { Button } from "primereact/button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { setMaxListeners } from "events";
+import CheckoutSidebarItem from "./subcomponent/CheckoutSidebarItem";
 
 export default function Checkoutsidebar(props: any) {
   const [showcheckoutmodal, setshowcheckoutmodal] = useState(false);
@@ -179,69 +181,22 @@ export default function Checkoutsidebar(props: any) {
               <ul className="list-none p-0 m-0">
                 {props.list
                   .map((item1: any) => ({
-                    name: item1.name,
-                    price: item1.price,
+                    product_name: item1.product_name,
                     category: item1.category,
-                    quantity: 1,
+                    color: item1.color,
+                    size: item1.size,
+                    price: item1.price,
+                    quantity: item1.quantity,
                     image: item1.image,
                   }))
                   .map((item: any, index: any) => {
                     return (
-                      <li key={index} className="flex align-items-center mb-4">
-                        <img
-                          src={item.image}
-                          className="w-6rem sm:w-8rem flex-shrink-0"
-                        />
-
-                        <div className="flex-auto px-3">
-                          <div className="flex align-items-center justify-content-between mb-3">
-                            <span className="text-900 font-medium">
-                              {item.name}
-                            </span>
-                            <span className="text-900 font-bold">
-                              {item.price}
-                            </span>
-                          </div>
-                          <div className="text-600 text-sm mb-3">
-                            {item.category}
-                          </div>
-                          <div className="flex flex-auto justify-content-between align-items-center">
-                            <span className="p-inputnumber p-component p-inputwrapper p-inputwrapper-filled p-inputnumber-buttons-horizontal border-1 surface-border border-round">
-                              <input
-                                role="spinbutton"
-                                className="p-inputtext p-component p-filled p-inputnumber-input w-3rem text-center py-2 px-1 border-transparent"
-                                type="text"
-                                inputMode="numeric"
-                                min={0}
-                                aria-valuemin={0}
-                                aria-valuenow={1}
-                                defaultValue={1}
-                              />
-                              <button
-                                type="button"
-                                className="p-inputnumber-button p-inputnumber-button-up p-button p-button-icon-only p-component p-button-text py-1 px-1"
-                                tabIndex={-1}
-                              >
-                                <span className="p-button-icon pi pi-plus" />
-                                <span role="presentation" className="p-ink" />
-                              </button>
-                              <button
-                                type="button"
-                                className="p-inputnumber-button p-inputnumber-button-down p-button p-button-icon-only p-component p-button-text py-1 px-1"
-                                tabIndex={-1}
-                              >
-                                <span className="p-button-icon pi pi-minus" />
-                                <span role="presentation" className="p-ink" />
-                              </button>
-                            </span>
-                            <button className="p-button p-component p-button-danger p-button-text p-button-rounded p-button-icon-only">
-                              <span className="p-button-icon p-c pi pi-trash" />
-                              <span className="p-button-label p-c">&nbsp;</span>
-                              <span role="presentation" className="p-ink" />
-                            </button>
-                          </div>
-                        </div>
-                      </li>
+                      <CheckoutSidebarItem
+                        item={item}
+                        index={index}
+                        list={props.list}
+                        setlist={props.setlist}
+                      />
                     );
                   })}
               </ul>
@@ -252,8 +207,9 @@ export default function Checkoutsidebar(props: any) {
                   Total Amount{" "}
                   <span className="text-600 text-sm">incl. VAT</span>
                 </span>
-                <span className="text-900 font-bold">$80.00</span>
+                <span className="text-900 font-bold">{700}</span>
               </div>
+
               <button
                 onClick={() => {
                   setshowcheckoutmodal(true);

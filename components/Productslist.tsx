@@ -14,6 +14,7 @@ import { Dialog } from "primereact/dialog";
 import { MultiSelect } from "primereact/multiselect";
 import Product_detail from "./dialogs/Product_detail";
 import Filter from "./sliders/Filter";
+import { formatter } from "../utils/Money_formatter";
 
 const DataViewDemo = (props: any) => {
   const [selectedproducts, setselectedproducts] = useState([]);
@@ -144,7 +145,9 @@ const DataViewDemo = (props: any) => {
             </div>
           </div>
           <div className="product-list-action">
-            <span className="product-price">{data.price} DA</span>
+            <span className="product-price">
+              {formatter.format(data.price)}
+            </span>
             <Button
               icon="pi pi-shopping-cart p-button-outlined p-button-secondary"
               label="Plus de détails"
@@ -180,7 +183,13 @@ const DataViewDemo = (props: any) => {
               >
                 {data.category}
               </span>
-              <img src={data.image} className="w-full h-full" />
+              <img
+                src={data.image}
+                className="w-full h-20rem "
+                style={{
+                  objectFit: "cover",
+                }}
+              />
             </div>
             <div className="flex justify-content-between align-items-center mb-3">
               <span className="text-900 font-medium text-xl">{data.name}</span>
@@ -193,7 +202,7 @@ const DataViewDemo = (props: any) => {
               {data.description.slice(0, 50)}...
             </p>
             <span className="text-primary text-xl font-medium">
-              {data.price} DA
+              {formatter.format(data.price)}
             </span>
           </div>
         </div>
@@ -282,6 +291,7 @@ const DataViewDemo = (props: any) => {
         setselectedcolor={setselectedcolor}
         selectedsize={selectedsize}
         setselectedsize={setselectedsize}
+        addToCart={addToCart}
       />
 
       {/* THIS IS THE END OF  DIALOG OF PRODUCT DETAIL */}

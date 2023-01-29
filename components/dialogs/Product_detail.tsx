@@ -2,6 +2,7 @@ import React from "react";
 import { Dialog } from "primereact/dialog";
 import { Galleria } from "primereact/galleria";
 import { Button } from "primereact/button";
+import { formatter } from "../../utils/Money_formatter";
 
 type Props = {};
 
@@ -9,7 +10,7 @@ export default function Product_detail(props: any) {
   return (
     <Dialog
       visible={props.openproductdetail}
-      className="w-full md:w-8 "
+      className="max-w-full md:w-8 "
       position="top"
       modal
       onHide={() => props.setopenproductdetail(false)}
@@ -53,7 +54,7 @@ export default function Product_detail(props: any) {
             </div>
             <div className="flex align-items-center justify-content-between mb-3">
               <div className="text-xl text-900">
-                {props.selecteditem?.price} da
+                {formatter.format(props.selecteditem?.price)}
               </div>
               <div className="flex align-items-center">
                 <span className="mr-3 flex">
@@ -163,9 +164,24 @@ export default function Product_detail(props: any) {
               }}
               onClick={() => {
                 const added_product = {
-                  ...props.selecteditem,
-                  colors: props.selectedcolor,
-                  sizes: props.selectedsize,
+                  product_name: props.selecteditem.name,
+                  category: props.selecteditem.category,
+                  color:
+                    props.selectedcolor === ""
+                      ? props.selecteditem.colors
+                        ? props.selecteditem.colors[0].color
+                        : ""
+                      : props.selectedcolor,
+                  size:
+                    props.selectedsize === ""
+                      ? props.selecteditem.sizes
+                        ? props.selecteditem.sizes[0].size
+                        : ""
+                      : props.selectedsize,
+
+                  price: props.selecteditem.price,
+                  quantity: 1,
+                  image: props.selecteditem.image,
                 };
                 //console.log(selecteditem , 'hada hwa')
                 props.addToCart(added_product);
@@ -175,19 +191,6 @@ export default function Product_detail(props: any) {
           </div>
         </div>
       </div>
-      <button
-        onClick={() =>
-          console.log({
-            ...props.selecteditem,
-            colors:
-              props.selectedcolor === ""
-                ? props.selecteditem.colors[0].color
-                : props.selectedcolor,
-          })
-        }
-      >
-        test
-      </button>
     </Dialog>
   );
 }
