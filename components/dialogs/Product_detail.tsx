@@ -185,6 +185,7 @@ export default function Product_detail(props: any) {
                 };
                 //console.log(selecteditem , 'hada hwa')
                 props.addToCart(added_product);
+                props.setopenproductdetail(false);
               }}
             ></Button>
           </div>

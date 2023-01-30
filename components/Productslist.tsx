@@ -110,7 +110,6 @@ const DataViewDemo = (props: any) => {
     let doesObjectExist = props.val.find((obj: any) => _.isEqual(obj, data));
 
     if (doesObjectExist) {
-      console.log("Object exists!");
       toast.current.show({
         severity: "error",
         summary: "Exist",
@@ -122,8 +121,8 @@ const DataViewDemo = (props: any) => {
       props.settotal((prev) => prev + selecteditem.price);
       toast.current.show({
         severity: "success",
-        summary: "Success Message",
-        detail: "Order submitted",
+        summary: "Ajoutée",
+        detail: "Produit ajouté",
       });
     }
   };

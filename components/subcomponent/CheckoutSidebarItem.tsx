@@ -1,10 +1,21 @@
-import React, { useState } from "react";
+import { PHASE_DEVELOPMENT_SERVER } from "next/dist/shared/lib/constants";
+import React, { useEffect, useState } from "react";
 import { formatter } from "../../utils/Money_formatter";
 
 type Props = {};
 
 export default function CheckoutSidebarItem(props: any) {
   const [quantity, setquantity] = useState(props.item.quantity);
+  const Delete_item = () => {
+    // set the new list after deleting the item
+    let new_array = props.list;
+    new_array.splice(props.index, 1);
+    props.setlist((prev: any) => new_array);
+
+    props.settotal((prev: number) => prev - props.item.price * quantity);
+    console.log(new_array);
+    props.setdeleted(true);
+  };
   const add_quantity = () => {
     // modify the item
     let modified_item = props.item;
@@ -13,7 +24,8 @@ export default function CheckoutSidebarItem(props: any) {
     let new_list = props.list;
     new_list.splice(props.index, 1);
     // insert the modified value instead of the old one
-    new_list[props.index] = modified_item;
+    new_list.splice(props.index, 0, modified_item);
+
     props.setlist(new_list);
     setquantity((prev) => prev + 1);
   };
@@ -26,9 +38,11 @@ export default function CheckoutSidebarItem(props: any) {
       let new_list = props.list;
       new_list.splice(props.index, 1);
       // insert the modified value instead of the old one
-      new_list[props.index] = modified_item;
+      new_list.splice(props.index, 0, modified_item);
+
       props.setlist(new_list);
       setquantity((prev) => prev - 1);
+      props.settotal((prev: number) => prev - props.item.price);
     }
   };
 
@@ -64,7 +78,7 @@ export default function CheckoutSidebarItem(props: any) {
               tabIndex={-1}
               onClick={() => {
                 add_quantity();
-                props.settotal((prev) => prev + props.item.price);
+                props.settotal((prev: number) => prev + props.item.price);
               }}
             >
               <span className="p-button-icon pi pi-plus" />
@@ -73,14 +87,22 @@ export default function CheckoutSidebarItem(props: any) {
             <button
               type="button"
               className="p-inputnumber-button p-inputnumber-button-down p-button p-button-icon-only p-component p-button-text py-1 px-1"
-              onClick={() => sub_quantity()}
               tabIndex={-1}
+              onClick={() => {
+                sub_quantity();
+              }}
             >
               <span className="p-button-icon pi pi-minus" />
               <span role="presentation" className="p-ink" />
             </button>
           </span>
-          <button className="p-button p-component p-button-danger p-button-text p-button-rounded p-button-icon-only">
+          <button
+            className="p-button p-component p-button-danger p-button-text p-button-rounded p-button-icon-only"
+            onClick={() => {
+              console.log("rani hna");
+              Delete_item();
+            }}
+          >
             <span className="p-button-icon p-c pi pi-trash" />
             <span className="p-button-label p-c">&nbsp;</span>
             <span role="presentation" className="p-ink" />
