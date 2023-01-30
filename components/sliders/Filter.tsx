@@ -11,8 +11,8 @@ export default function Filter(props: any) {
   return (
     <Sidebar
       visible={props.showfilter}
-      position="left"
-      className="h-full"
+      position="top"
+      className="h-10rem"
       onHide={() => props.setshowfilter(false)}
     >
       <div className="flex align-items-center md:flex-row gap-3 md:gap-0 flex-column justify-content-center ">

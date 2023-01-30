@@ -42,28 +42,26 @@ const DataViewDemo = (props: any) => {
   const [search, setsearch] = useState("");
 
   const [categoryselected, setcategoryselected] = useState(
-    categories.map((item: any) => item.name)
+    categories.map((item: any) => item.category)
   );
   const [defaultcategories, setdefaultcategories] = useState(
-    categories.map((item: any) => item.name)
+    categories.map((item: any) => item.category)
   );
   const [openproductdetail, setopenproductdetail] = useState(false);
 
-  const categories_list = categories.map((item: any) => item.name);
+  const categories_list = categories.map((item: any) => item.category);
 
   const [products, setProducts] = useState(
-    categories.map((item: any) =>
-      item.products.map((item2: any) => ({
-        name: item2.name,
-        image: item2.thumbnail,
-        price: item2.price,
-        category: item.name,
-        description: item2.description,
-        imagesdetail: item2.images,
-        colors: item2.colors,
-        sizes: item2.sizes,
-      }))
-    )[0]
+    categories.map((item: any) => ({
+      category: item.category,
+      name: item.name,
+      image: item.thumbnail,
+      price: item.price,
+      description: item.description,
+      colors: item.colors,
+      sizes: item.sizes,
+      imagesdetail: item.images,
+    }))
   );
 
   const imagesdetail = [
@@ -302,9 +300,9 @@ const DataViewDemo = (props: any) => {
         <Toast ref={toast} />
         <div className="card">
           <DataView
-            value={products?.filter(
+            value={products.filter(
               (item: any, index: number) =>
-                item.name.includes(search) &&
+                item.category.includes(search) &&
                 categoryselected.indexOf(item.category) !== -1
             )}
             layout={layout === "grid" ? "grid" : "list"}
