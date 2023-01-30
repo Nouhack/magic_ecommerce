@@ -302,7 +302,7 @@ const DataViewDemo = (props: any) => {
         <Toast ref={toast} />
         <div className="card">
           <DataView
-            value={products.filter(
+            value={products?.filter(
               (item: any, index: number) =>
                 item.name.includes(search) &&
                 categoryselected.indexOf(item.category) !== -1
