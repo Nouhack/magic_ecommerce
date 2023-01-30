@@ -6,7 +6,7 @@ import React, { useState } from "react";
 import { DataView, DataViewLayoutOptions } from "primereact/dataview";
 import { Button } from "primereact/button";
 import { Carousel } from "primereact/carousel";
-import { attributes } from "../content/category.md";
+import { attributes } from "../content/products.md";
 import { Dropdown } from "primereact/dropdown";
 import { Sidebar } from "primereact/sidebar";
 import { InputText } from "primereact/inputtext";
@@ -20,7 +20,8 @@ const DataViewDemo = (props: any) => {
   const [selectedproducts, setselectedproducts] = useState([]);
 
   const toast = useRef(null);
-  let { categories } = attributes;
+  let { products } = attributes;
+  let categories = products;
   const [showfilter, setshowfilter] = useState(false);
   // selected color
   const [selectedcolor, setselectedcolor] = useState("");

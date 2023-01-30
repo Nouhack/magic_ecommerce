@@ -7,24 +7,7 @@ collections:
   - name: "pages"
     label: "Pages"
     files:
-      - label: "Home"
-        name: "home"
-        file: "content/home.md"
-        fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - {
-              label: "Cat",
-              name: "cat",
-              widget: "relation",
-              file: "content/category.md",
-              collection: "category",
-              value_field: "name.name",
-              search_fields: ["name.name"],
-              displayFields: ["name", "description"],
-            }
-          - { label: "Publish Date", name: "date", widget: "datetime" }
-          - { label: "Body", name: "body", widget: "markdown" }
-      - label: "Categorie"
+      - label: "Les categories"
         name: "category"
         file: "content/category.md"
         fields:
@@ -33,3 +16,49 @@ collections:
             widget: list
             fields:
               - { label: "Nom de la categorie", name: "name", widget: "string" }
+
+      - label: "Les produits"
+        name: "products"
+        file: "content/products.md"
+        fields:
+          - label: "Produits"
+            name: "products"
+            widget: list
+            fields:
+              - label: "Product Name"
+                name: "name"
+                widget: string
+              - label: "Product Category"
+                name: "category"
+                widget: relation
+                collection: "pages"
+                file: "category"
+                value_field: "categories.*.name"
+                display_fields: ["categories.*.name"]
+                search_fields: ["categories.*.name"]
+              - { label: "Miniature", name: "thumbnail", widget: "image" }
+              - {
+                  label: "Prix",
+                  name: "price",
+                  widget: "number",
+                  value_type: "float",
+                }
+              - { label: "Description", name: "description", widget: "text" }
+              - label: "Colors"
+                name: "colors"
+                widget: list
+                fields:
+                  - { label: "Color", name: "color", widget: "color" }
+              - label: "Sizes"
+                name: "sizes"
+                widget: list
+                fields:
+                  - label: "Size"
+                    name: "size"
+                    widget: "select"
+                    options: ["S", "M", "L", "XL", "none"]
+              - label: "Images"
+                name: "images"
+                widget: list
+                fields:
+                  - { label: "Image", name: "image", widget: "image" }

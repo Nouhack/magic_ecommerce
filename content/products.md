@@ -1,7 +1,6 @@
 ---
 title: test
-categories:
-  - name: zara
+products: []
 ---
 
 Welcome to my awesome page about cats of the internet.
