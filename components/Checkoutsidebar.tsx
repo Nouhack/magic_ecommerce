@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import { setMaxListeners } from "events";
 import CheckoutSidebarItem from "./subcomponent/CheckoutSidebarItem";
 import { formatter } from "../utils/Money_formatter";
-import Order_details from "./dialogs/order_details";
+import Order_details from "./dialogs/Make_order";
 
 export default function Checkoutsidebar(props: any) {
   const [showcheckoutmodal, setshowcheckoutmodal] = useState(false);
