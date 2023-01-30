@@ -72,6 +72,7 @@ export default function Checkoutsidebar(props: any) {
                   .map((item: any, index: any) => {
                     return (
                       <CheckoutSidebarItem
+                        key={index}
                         settotal={props.settotal}
                         total={props.total}
                         item={item}
