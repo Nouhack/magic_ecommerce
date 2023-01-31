@@ -251,7 +251,21 @@ const DataViewDemo = (props: any) => {
   };
 
   const thumbnailTemplate = (item: any) => {
-    return <img src={item} alt={item.alt} />;
+    console.log("---------------------");
+    console.log(item);
+    console.log("---------------------");
+    return (
+      <img
+        src={item.image}
+        alt={item.alt}
+        style={{
+          width: "50px",
+          height: "50px",
+          objectFit: "cover",
+          display: "block",
+        }}
+      />
+    );
   };
 
   const resetfilter = () => {
@@ -292,6 +306,7 @@ const DataViewDemo = (props: any) => {
         setselectedsize={setselectedsize}
         addToCart={addToCart}
         settotal={props.settotal}
+        list={props.val}
       />
 
       {/* THIS IS THE END OF  DIALOG OF PRODUCT DETAIL */}

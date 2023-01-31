@@ -7,6 +7,20 @@ import { formatter } from "../../utils/Money_formatter";
 type Props = {};
 
 export default function Product_detail(props: any) {
+  const responsiveOptions = [
+    {
+      breakpoint: "991px",
+      numVisible: 4,
+    },
+    {
+      breakpoint: "767px",
+      numVisible: 3,
+    },
+    {
+      breakpoint: "575px",
+      numVisible: 1,
+    },
+  ];
   return (
     <Dialog
       visible={props.openproductdetail}
@@ -25,14 +39,10 @@ export default function Product_detail(props: any) {
         <div className="grid relative overflow-y-auto overflow-x-hidden">
           <div className="col-12 lg:col-6 text-center ">
             <Galleria
-              value={props.selecteditem?.imagesdetail}
-              numVisible={5}
-              circular
               style={{ maxWidth: "640px" }}
-              showItemNavigators
-              showThumbnails={false}
-              showItemNavigatorsOnHover
-              showIndicators
+              value={props.selecteditem?.imagesdetail}
+              responsiveOptions={responsiveOptions}
+              numVisible={3}
               item={(e) => {
                 return (
                   <img
@@ -43,6 +53,7 @@ export default function Product_detail(props: any) {
                   />
                 );
               }}
+              thumbnailsPosition={"bottom"}
               thumbnail={props.thumbnailTemplate}
             />
           </div>

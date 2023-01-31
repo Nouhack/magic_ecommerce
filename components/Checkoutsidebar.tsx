@@ -26,6 +26,9 @@ export default function Checkoutsidebar(props: any) {
       <Order_details
         showcheckoutmodal={showcheckoutmodal}
         setshowcheckoutmodal={setshowcheckoutmodal}
+        total={props.total}
+        nombre_de_produit={props.list.length}
+        list={props.list}
       />
       <Sidebar
         style={{ width: "30em", textAlign: "center" }}
@@ -88,8 +91,8 @@ export default function Checkoutsidebar(props: any) {
             <div className="border-top-1 surface-border p-3">
               <div className="flex align-items-center justify-content-between mb-3">
                 <span className="text-900 font-medium">
-                  Total Amount{" "}
-                  <span className="text-600 text-sm">incl. VAT</span>
+                  Montant total{" "}
+                  <span className="text-600 text-sm">Sans expédition</span>
                 </span>
                 <span className="text-900 font-bold">
                   {formatter.format(props.total)}

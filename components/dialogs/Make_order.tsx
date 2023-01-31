@@ -1,21 +1,89 @@
 import { Dialog } from "primereact/dialog";
+import { Messages } from "primereact/messages";
+
+import { Divider } from "primereact/divider";
+
+import { InputMask } from "primereact/inputmask";
+
 import { Dropdown } from "primereact/dropdown";
 
 import { InputTextarea } from "primereact/inputtextarea";
-import React, { useState } from "react";
+import { attributes } from "../../content/wilaya.md";
+import React, { useRef, useState } from "react";
+import { formatter } from "../../utils/Money_formatter";
 
 type Props = {};
 
 export default function Order_details(props: any) {
+  const [name, setname] = useState("");
+  const [username, setusername] = useState("");
+  const [adress, setadress] = useState("");
+  const [postalcode, setpostalcode] = useState("");
   const [selectedCity, setSelectedCity] = useState(null);
-  const cities = ["New York", "New York", "New York", "New York"];
+  const [phone, setphone] = useState("");
+  const [note, setnote] = useState("");
+
+  const msgs = useRef(null);
+
+  const send_order = () => {
+    if (
+      name === "" ||
+      username === "" ||
+      adress === "" ||
+      postalcode === "" ||
+      !selectedCity.align ||
+      phone === ""
+    ) {
+      msgs.current.show([
+        {
+          severity: "error",
+          detail: "vous devez remplir tous les champs",
+          sticky: true,
+          closable: true,
+        },
+      ]);
+    } else if (props.list.length === 0) {
+      msgs.current.show([
+        {
+          severity: "error",
+          detail: "Il n'y a pas de produit(s) à commander",
+          sticky: true,
+          closable: true,
+        },
+      ]);
+    } else {
+      fetch("https://formsubmit.co/ajax/nouh.saiche@gmail.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          Nom: name,
+          Prénom: username,
+          Adresse: adress,
+          "Code postale": postalcode,
+          city: selectedCity?.align,
+          "Numéro de téléphone": phone,
+          Note: note,
+          "Prix total": props.total + selectedCity.tax,
+          "produits(s)": JSON.stringify(props.list, null, 4),
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => console.log(data))
+        .catch((error) => console.log(error));
+    }
+  };
+
+  const cities = attributes.wilaya;
   const onCityChange = (e: any) => {
     setSelectedCity(e.value);
   };
 
   return (
     <Dialog
-      header="Checkout"
+      header="Remplissez les informations détaillées pour le processus d'expédition"
       visible={props.showcheckoutmodal}
       maximizable
       modal
@@ -50,55 +118,99 @@ export default function Order_details(props: any) {
               </div>
               <div className="col-12 lg:col-6 field mb-0">
                 <label htmlFor="name2" className="text-900 font-medium mb-3">
-                  Name
+                  Nom
                 </label>
-                <input type="text" className="p-inputtext w-full mb-3" />
+                <input
+                  placeholder="Doe"
+                  required
+                  type="text"
+                  className="p-inputtext w-full mb-3"
+                  value={name}
+                  onChange={(e) => setname(e.target.value)}
+                />
               </div>
+
               <div className="col-12 lg:col-6 field mb-0">
                 <label htmlFor="surname2" className="text-900 font-medium mb-3">
-                  Surname
+                  Prénom
                 </label>
-                <input type="text" className="p-inputtext w-full mb-3" />
+                <input
+                  placeholder="Jane"
+                  required
+                  type="text"
+                  className="p-inputtext w-full mb-3"
+                  value={username}
+                  onChange={(e) => setusername(e.target.value)}
+                />
               </div>
               <div className="col-12 field mb-0">
                 <label htmlFor="address3" className="text-900 font-medium mb-3">
-                  Apartment, Suite, etc.
+                  Adresse, Appartement, Suite, etc.
                 </label>
-                <input type="text" className="p-inputtext w-full mb-3" />
+                <input
+                  placeholder="7 rue des Oiseaux, 16000 Alger, Algeria"
+                  type="text"
+                  required
+                  className="p-inputtext w-full mb-3"
+                  value={adress}
+                  onChange={(e) => setadress(e.target.value)}
+                />
               </div>
               <div className="col-12 lg:col-6 field mb-0">
                 <label htmlFor="pc2" className="text-900 font-medium mb-3">
-                  Postal Code
+                  Code Postal
                 </label>
-                <input type="text" className="p-inputtext w-full mb-3" />
+                <input
+                  placeholder="16000"
+                  type="text"
+                  required
+                  className="p-inputtext w-full mb-3"
+                  value={postalcode}
+                  onChange={(e) => setpostalcode(e.target.value)}
+                />
               </div>
               <div className="col-12 lg:col-6 field mb-0">
                 <label htmlFor="phone" className="text-900 font-medium mb-3">
-                  City
+                  Ville
                 </label>
+
                 <Dropdown
+                  required
                   value={selectedCity}
                   options={cities}
                   onChange={onCityChange}
-                  optionLabel=""
+                  optionLabel="align"
                   placeholder="Select a City"
                 />
               </div>
               <div className="col-12 field mb-0">
                 <label htmlFor="phone" className="text-900 font-medium mb-3">
-                  Phone
+                  Numéro de téléphone
                 </label>
-                <input type="text" className="p-inputtext w-full mb-3" />
+                <InputMask
+                  required
+                  id="phone"
+                  mask="(999) 999-9999"
+                  value={phone}
+                  placeholder="(999) 999-9999"
+                  onChange={(e) => setphone(e.target.value)}
+                ></InputMask>
               </div>
+              <Divider />
+
               <div className="col-12 field mb-0">
                 <label htmlFor="phone" className="text-900 font-medium mb-3">
-                  Add notes
+                  Ajoutez des notes (pas obligatoire mais si vous avez un détail
+                  sur votre commande, veuillez nous en informer)
                 </label>
 
                 <InputTextarea
+                  placeholder="Veuillez livrer le colis à l'entrée de l'immeuble."
                   className="p-inputtext w-full mb-3"
                   rows={5}
                   cols={30}
+                  value={note}
+                  onChange={(e) => setnote(e.target.value)}
                 />
               </div>
             </div>
@@ -106,32 +218,37 @@ export default function Order_details(props: any) {
           <div className="col-12 lg:col-4 p-4">
             <div className="surface-card border-round shadow-2 p-5">
               <div className="flex justify-content-between align-items-center border-bottom-1 pb-3 surface-border">
-                <span className="text-900 font-medium text-lg lg:text-xl">
-                  <i className="pi pi-shopping-cart text-xl mr-2" />
-                  Your Order (1)
+                <span className="text-900 font-medium text-lg ">
+                  <i className="pi pi-shopping-cart mr-2" />
+                  Votre commande ({props.nombre_de_produit})
                 </span>
-                <a
-                  tabIndex={0}
-                  className="text-600 font-medium cursor-pointer hover:text-primary"
-                >
-                  Edit Cart
-                </a>
               </div>
               <div className="py-2 mt-3 border-bottom-1 surface-border">
                 <div className="flex justify-content-between align-items-center mb-3">
                   <span className="text-900">Subtotal</span>
-                  <span className="text-900">$12.00</span>
+                  <span className="text-900">
+                    {formatter.format(props.total)}
+                  </span>
                 </div>
                 <div className="flex justify-content-between align-items-center mb-3">
                   <span className="text-900">Shipping</span>
-                  <span className="text-900">Free</span>
+                  <span className="text-900">
+                    {selectedCity ? formatter.format(selectedCity.tax) : 0}
+                  </span>
                 </div>
                 <div className="flex justify-content-between align-items-center mb-3">
                   <span className="text-900">Total</span>
-                  <span className="text-900 font-bold">$12.00</span>
+                  <span className="text-900 font-bold">
+                    {formatter.format(
+                      props.total + (selectedCity ? selectedCity.tax : 0)
+                    )}
+                  </span>
                 </div>
               </div>
+              <Messages ref={msgs} />
+
               <button
+                onClick={() => send_order()}
                 aria-label="Place Order"
                 className="p-button p-component p-button-primary w-full mt-3"
               >
