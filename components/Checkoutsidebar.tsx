@@ -125,7 +125,11 @@ export default function Checkoutsidebar(props: any) {
           className="flex align-items-center p-3 "
         >
           <i className="pi pi-shopping-cart mr-2 text-xl  p-overlay-badge">
-            <span className="p-badge p-component p-badge-dot" />
+            {props.total ? (
+              <span className="p-badge p-component p-badge-dot" />
+            ) : (
+              ""
+            )}
           </i>
           <p className="font-semibold">Panier</p>
           <span role="presentation" className="p-ink" />

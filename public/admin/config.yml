@@ -4,6 +4,89 @@ backend:
 media_folder: public/img
 public_folder: img
 collections:
+  - name: "Shipping"
+    label: "Expédition"
+    files:
+      - label: "Wilaya / tarif de livraison"
+        name: "wilaya"
+        file: "content/wilaya.md"
+        fields:
+          - label: "wilayas"
+            name: "wilaya"
+            widget: list
+            fields:
+              - label: "Align Content"
+                name: "align"
+                widget: "select"
+                options:
+                  [
+                    "Adrar ",
+                    "Chlef ",
+                    "Laghouat ",
+                    "Oum El Bouaghi ",
+                    "Batna ",
+                    "Béjaïa ",
+                    "Biskra ",
+                    "Béchar ",
+                    "Blida ",
+                    "Bouïra ",
+                    "Tamanrasset ",
+                    "Tébessa ",
+                    "Tlemcen ",
+                    "Tiaret ",
+                    "Tizi Ouzou ",
+                    "Algiers ",
+                    "Djelfa ",
+                    "Jijel ",
+                    "Sétif ",
+                    "Saïda ",
+                    "Skikda ",
+                    "Sidi Bel Abbès ",
+                    "Annaba ",
+                    "Guelma ",
+                    "Constantine ",
+                    "Médéa ",
+                    "Mostaganem ",
+                    "M'Sila ",
+                    "Mascara ",
+                    "Ouargla ",
+                    "Oran ",
+                    "El Bayadh ",
+                    "Illizi ",
+                    "Bordj Bou Arréridj ",
+                    "Boumerdès ",
+                    "El Taref ",
+                    "Tindouf ",
+                    "Tissemsilt ",
+                    "El Oued ",
+                    "Khenchela ",
+                    "Souk Ahras ",
+                    "Tipaza ",
+                    "Mila ",
+                    "Aïn Defla ",
+                    "Naâma ",
+                    "Aïn Témouchent ",
+                    "Ghardaïa ",
+                    "Relizane ",
+                    "El M'Ghair ",
+                    "El Menia ",
+                    "Ouled Djellal ",
+                    "Bordj Baji Mokhtar ",
+                    "Béni Abbès ",
+                    "Timimoun ",
+                    "Touggourt ",
+                    "Djanet ",
+                    "In Salah ",
+                    "Ain Guezzam ",
+                  ]
+                required: true
+
+              - {
+                  label: "Tarif de livraison",
+                  name: "tax",
+                  widget: "number",
+                  value_type: "float",
+                }
   - name: "pages"
     label: "Pages"
     files:
