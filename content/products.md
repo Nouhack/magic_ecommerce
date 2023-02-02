@@ -44,6 +44,15 @@ products:
       - color: "#f50000"
     images:
       - image: https://images.unsplash.com/photo-1532660621034-fb55e2e59762?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80
+  - name: Nike-jordan
+    category: Homme
+    thumbnail: https://images.unsplash.com/photo-1612452830710-97cd38a7b6e8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80
+    price: 15000
+    description: nike jordan , i assume you know it already , so yeah buy and enjoy
+    colors:
+      - color: "#b4b4b4"
+    images:
+      - image: https://images.unsplash.com/photo-1612452830710-97cd38a7b6e8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80
 ---
 
 Welcome to my awesome page about cats of the internet.
