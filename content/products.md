@@ -35,6 +35,15 @@ products:
     description: this skin oil is the one of the best oils in the market
     images:
       - image: https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80
+  - name: Bracelet
+    category: Homme
+    thumbnail: https://images.unsplash.com/photo-1532660621034-fb55e2e59762?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80
+    price: 1000
+    description: "tonda bracelet makes you feel always in fashion "
+    colors:
+      - color: "#f50000"
+    images:
+      - image: https://images.unsplash.com/photo-1532660621034-fb55e2e59762?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80
 ---
 
 Welcome to my awesome page about cats of the internet.
