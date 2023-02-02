@@ -4,10 +4,12 @@ import Hero from "../components/Hero";
 import Productslist from "../components/Productslist";
 import Header from "../components/Header";
 import { useState } from "react";
+import { ar_lan, en_lan, fr_lan } from "../utils/Language_data";
 
 export default function Home() {
     const [selectedProducts, setselectedProducts] = useState([]);
     const [total_sum, settotal_sum] = useState(0);
+    const [default_language, setdefault_language] = useState("fr");
 
     return (
         <>
@@ -17,10 +19,24 @@ export default function Home() {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <Header list={selectedProducts} total={total_sum} settotal={settotal_sum} setlist={setselectedProducts} />
+            <Header
+                lan={default_language === "fr" ? fr_lan : default_language === "en" ? en_lan : ar_lan}
+                default_language={default_language}
+                list={selectedProducts}
+                total={total_sum}
+                settotal={settotal_sum}
+                setlist={setselectedProducts}
+                setdefault_language={setdefault_language}
+            />
             <div className="">
-                <Hero />
-                <Carousel_component />
+                <Hero
+                    lan={default_language === "fr" ? fr_lan : default_language === "en" ? en_lan : ar_lan}
+                    default_language={default_language}
+                />
+                <Carousel_component
+                    lan={default_language === "fr" ? fr_lan : default_language === "en" ? en_lan : ar_lan}
+                    default_language={default_language}
+                />
                 <Productslist settotal={settotal_sum} val={selectedProducts} selected={setselectedProducts} />
             </div>
         </>
