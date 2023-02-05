@@ -37,7 +37,13 @@ export default function Home() {
                     lan={default_language === "fr" ? fr_lan : default_language === "en" ? en_lan : ar_lan}
                     default_language={default_language}
                 />
-                <Productslist settotal={settotal_sum} val={selectedProducts} selected={setselectedProducts} />
+                <Productslist
+                    lan={default_language === "fr" ? fr_lan : default_language === "en" ? en_lan : ar_lan}
+                    default_language={default_language}
+                    settotal={settotal_sum}
+                    val={selectedProducts}
+                    selected={setselectedProducts}
+                />
             </div>
         </>
     );

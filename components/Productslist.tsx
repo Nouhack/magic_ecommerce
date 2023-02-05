@@ -76,8 +76,11 @@ const DataViewDemo = (props: any) => {
   const [sortOrder, setSortOrder] = useState<any>(null);
   const [sortField, setSortField] = useState("");
   const sortOptions = [
-    { label: "Price High to Low", value: "!price" },
-    { label: "Price Low to High", value: "price" },
+    {
+      label: props.lan.filter.price.heigh_to_low,
+      value: "!price",
+    },
+    { label: props.lan.filter.price.low_to_heigh, value: "price" },
   ];
 
   const onSortChange = (event: any) => {
@@ -149,7 +152,7 @@ const DataViewDemo = (props: any) => {
             </span>
             <Button
               icon="pi pi-shopping-cart p-button-outlined p-button-secondary"
-              label="Plus de détails"
+              label={props.lan.more_product_detail}
               className="p-button-rounded p-button-outlined p-button-secondary w-full text-center "
               onClick={() => {
                 showDetail(data);
@@ -220,6 +223,33 @@ const DataViewDemo = (props: any) => {
 
   // THIS IS THE HEADER OF DATATABLE OF THE PRODUCT LIST
   const renderHeader = () => {
+    const comp_array = [
+      <div
+        key={1}
+        className="md:col-10 col-6"
+        style={{
+          textAlign: props.default_language == "ar" ? "right" : "left",
+        }}
+      >
+        <Button
+          label={props.lan.filter.title}
+          className="p-button p-component p-button-rounded bg-gray-900 text-white px-5 lg:mr-4 sm w-full lg:w-auto border-none"
+          onClick={() => setshowfilter(true)}
+        />
+      </div>,
+      <div
+        key={2}
+        className="md:col-2 col-6"
+        style={{
+          textAlign: props.default_language == "ar" ? "left" : "right",
+        }}
+      >
+        <DataViewLayoutOptions
+          layout={layout === "grid" ? "grid" : "list"}
+          onChange={(e) => setLayout(e.value)}
+        />
+      </div>,
+    ];
     return (
       <div
         className="grid  grid-nogutter"
@@ -227,19 +257,7 @@ const DataViewDemo = (props: any) => {
           backgroundColor: "transparent",
         }}
       >
-        <div className="md:col-10 col-6" style={{ textAlign: "left" }}>
-          <Button
-            label="Filter"
-            className="p-button p-component p-button-rounded bg-gray-900 text-white px-5 lg:mr-4 sm w-full lg:w-auto border-none"
-            onClick={() => setshowfilter(true)}
-          />
-        </div>
-        <div className="md:col-2 col-6" style={{ textAlign: "right" }}>
-          <DataViewLayoutOptions
-            layout={layout === "grid" ? "grid" : "list"}
-            onChange={(e) => setLayout(e.value)}
-          />
-        </div>
+        {props.default_language === "ar" ? comp_array.reverse() : comp_array}
       </div>
     );
   };
@@ -251,9 +269,6 @@ const DataViewDemo = (props: any) => {
   };
 
   const thumbnailTemplate = (item: any) => {
-    console.log("---------------------");
-    console.log(item);
-    console.log("---------------------");
     return (
       <img
         src={item.image}
@@ -279,6 +294,7 @@ const DataViewDemo = (props: any) => {
     <div className="bg">
       {/* THIS IS THE FILTER SIDEBAR */}
       <Filter
+        lan={props.lan}
         showfilter={showfilter}
         setshowfilter={setshowfilter}
         sortOptions={sortOptions}
@@ -290,11 +306,13 @@ const DataViewDemo = (props: any) => {
         categories_list={categories_list}
         setcategoryselected={setcategoryselected}
         resetfilter={resetfilter}
+        default_language={props.default_language}
       />
       {/* END OF FILTER SLIDER*/}
 
       {/* THIS IS THE DIALOG OF PRODUCT DETAIL */}
       <Product_detail
+        default_language={props.default_language}
         openproductdetail={openproductdetail}
         setopenproductdetail={setopenproductdetail}
         thumbnailTemplate={thumbnailTemplate}
@@ -307,6 +325,7 @@ const DataViewDemo = (props: any) => {
         addToCart={addToCart}
         settotal={props.settotal}
         list={props.val}
+        lan={props.lan}
       />
 
       {/* THIS IS THE END OF  DIALOG OF PRODUCT DETAIL */}

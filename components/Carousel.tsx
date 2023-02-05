@@ -15,8 +15,11 @@ const CarouselDemo = (props: any) => {
           >
             {props.default_language === "ar"
               ? [
-                  <i className="pi pi-arrow-right text-pink-500 text-4xl ml-5" />,
-                  <div>
+                  <i
+                    key={1}
+                    className="pi pi-arrow-right text-pink-500 text-4xl ml-5"
+                  />,
+                  <div key={2}>
                     <span className="text-900 font-medium text-xl">
                       {props.lan.features[0].title}
                     </span>
@@ -26,8 +29,11 @@ const CarouselDemo = (props: any) => {
                   </div>,
                 ].reverse()
               : [
-                  <i className="pi pi-arrow-right text-pink-500 text-4xl mr-5" />,
-                  <div>
+                  <i
+                    key={1}
+                    className="pi pi-arrow-right text-pink-500 text-4xl mr-5"
+                  />,
+                  <div key={2}>
                     <span className="text-900 font-medium text-xl">
                       {props.lan.features[0].title}
                     </span>
@@ -45,8 +51,11 @@ const CarouselDemo = (props: any) => {
           >
             {props.default_language === "ar"
               ? [
-                  <i className="pi pi-shopping-cart text-blue-500 text-4xl ml-5" />,
-                  <div>
+                  <i
+                    key={1}
+                    className="pi pi-shopping-cart text-blue-500 text-4xl ml-5"
+                  />,
+                  <div key={2}>
                     <span className="text-900 font-medium text-xl">
                       {props.lan.features[1].title}
                     </span>
@@ -56,8 +65,11 @@ const CarouselDemo = (props: any) => {
                   </div>,
                 ].reverse()
               : [
-                  <i className="pi pi-shopping-cart text-blue-500 text-4xl mr-5" />,
-                  <div>
+                  <i
+                    key={1}
+                    className="pi pi-shopping-cart text-blue-500 text-4xl mr-5"
+                  />,
+                  <div key={2}>
                     <span className="text-900 font-medium text-xl">
                       {props.lan.features[1].title}
                     </span>
@@ -74,8 +86,11 @@ const CarouselDemo = (props: any) => {
           >
             {props.default_language === "ar"
               ? [
-                  <i className="pi pi-shield text-orange-500 text-4xl ml-5" />,
-                  <div>
+                  <i
+                    key={1}
+                    className="pi pi-shield text-orange-500 text-4xl ml-5"
+                  />,
+                  <div key={2}>
                     <span className="text-900 font-medium text-xl">
                       {props.lan.features[2].title}
                     </span>
@@ -85,8 +100,11 @@ const CarouselDemo = (props: any) => {
                   </div>,
                 ].reverse()
               : [
-                  <i className="pi pi-shield text-orange-500 text-4xl mr-5" />,
-                  <div>
+                  <i
+                    key={1}
+                    className="pi pi-shield text-orange-500 text-4xl mr-5"
+                  />,
+                  <div key={2}>
                     <span className="text-900 font-medium text-xl">
                       {props.lan.features[2].title}
                     </span>

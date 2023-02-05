@@ -33,19 +33,20 @@ export default function Product_detail(props: any) {
     >
       <div
         id="pr_id_5_content"
-        className="p-dialog-content"
+        className="p-dialog-content "
         style={{ paddingTop: "1rem" }}
       >
-        <div className="grid relative overflow-y-auto overflow-x-hidden">
-          <div className="col-12 lg:col-6 text-center ">
+        <div className="grid relative  overflow-y-auto overflow-x-hidden">
+          <div className="col-12 lg:col-6  text-center ">
             <Galleria
               style={{ maxWidth: "640px" }}
               value={props.selecteditem?.imagesdetail}
               responsiveOptions={responsiveOptions}
               numVisible={3}
-              item={(e) => {
+              item={(e, i) => {
                 return (
                   <img
+                    key={i}
                     src={e.image}
                     alt="none"
                     className="w-full "
@@ -57,7 +58,7 @@ export default function Product_detail(props: any) {
               thumbnail={props.thumbnailTemplate}
             />
           </div>
-          <div className="col-12 lg:col-6 py-0 lg:pl-5">
+          <div className="col-12 lg:col-6 py-0 lg:pl-5  flex flex-column justify-content-between">
             <div className="flex align-items-center justify-content-between mb-3">
               <span className="text-xl font-medium text-900">
                 {props.selecteditem?.name}
@@ -82,7 +83,13 @@ export default function Product_detail(props: any) {
                 {props.selecteditem?.description}
               </p>
             </div>
-            <div className="font-bold text-900 mb-3">Couleurs</div>
+            <div
+              className={`font-bold text-900  mb-3 ${
+                props.default_language === "ar" ? "text-right" : "text-left"
+              }`}
+            >
+              {props.lan.product_details.colors}
+            </div>
             <div className="flex align-items-center mb-5">
               {!props.selecteditem?.colors ? (
                 <div
@@ -121,14 +128,36 @@ export default function Product_detail(props: any) {
                 })
               )}
             </div>
-            <div className="mb-3 flex align-items-center justify-content-between">
-              <span className="font-bold text-900">Size</span>
-              <a
-                tabIndex={0}
-                className="cursor-pointer text-600 text-sm flex align-items-center"
-              >
-                Size Guide <i className="ml-1 pi pi-angle-right" />
-              </a>
+            <div
+              className={`font-bold text-900  flex justify-content-between mb-3`}
+            >
+              {props.default_language === "ar"
+                ? [
+                    <span key={1} className="font-bold text-900">
+                      {props.lan.product_details.sizes}
+                    </span>,
+                    <a
+                      key={2}
+                      tabIndex={0}
+                      className="cursor-pointer text-600 text-sm flex align-items-center"
+                    >
+                      {props.lan.product_details.size_guide}
+                      <i className="ml-1 pi pi-angle-right" />
+                    </a>,
+                  ].reverse()
+                : [
+                    <span key={1} className="font-bold text-900">
+                      {props.lan.product_details.sizes}
+                    </span>,
+                    <a
+                      key={2}
+                      tabIndex={0}
+                      className="cursor-pointer text-600 text-sm flex align-items-center"
+                    >
+                      {props.lan.product_details.size_guide}
+                      <i className="ml-1 pi pi-angle-right" />
+                    </a>,
+                  ]}
             </div>
             <div className="flex align-items-center mb-3 text-base">
               {!props.selecteditem?.sizes ? (
@@ -168,7 +197,7 @@ export default function Product_detail(props: any) {
 
             <Button
               icon="pi pi-shopping-cart p-button-outlined p-button-secondary"
-              label="Ajouter au panier"
+              label={props.lan.product_details.add_to_cart}
               className="p-button-rounded p-button-outlined p-button-secondary w-full text-center "
               style={{
                 display: "inline-block",

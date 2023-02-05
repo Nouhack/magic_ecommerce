@@ -7,7 +7,10 @@ const MenubarDemo = (props: any) => {
     >
       {props.default_language === "ar"
         ? [
-            <div className="w-full md:w-6 px-4 py-8 md:px-6 lg:px-8 surface-900">
+            <div
+              key={1}
+              className="w-full md:w-6 px-4 py-8 md:px-6 lg:px-8 surface-900"
+            >
               <div className="text-4xl text-0 mb-3 font-medium">
                 {props.lan.banner.title}
               </div>
@@ -22,6 +25,7 @@ const MenubarDemo = (props: any) => {
               </a>
             </div>,
             <div
+              key={2}
               className="w-full md:w-6 bg-no-repeat bg-cover"
               style={{
                 background:
@@ -31,7 +35,10 @@ const MenubarDemo = (props: any) => {
             />,
           ]
         : [
-            <div className="w-full md:w-6 px-4 py-8 md:px-6 lg:px-8 surface-900">
+            <div
+              key={1}
+              className="w-full md:w-6 px-4 py-8 md:px-6 lg:px-8 surface-900"
+            >
               <div className="text-4xl text-0 mb-3 font-medium">
                 {props.lan.banner.title}
               </div>
@@ -46,6 +53,7 @@ const MenubarDemo = (props: any) => {
               </a>
             </div>,
             <div
+              key={2}
               className="w-full md:w-6 bg-no-repeat bg-cover"
               style={{
                 background:

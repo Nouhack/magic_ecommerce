@@ -68,7 +68,7 @@ export default function Header(props: any) {
   };
 
   const list_comp_item = () => [
-    <li className="flex flex-column  lg:flex-row">
+    <li key={1} className="flex flex-column  lg:flex-row">
       <a className="p-ripple inline-flex align-items-center cursor-pointer border-right-2 lg:border-right-none lg:border-bottom-2 border-transparent hover:border-primary py-3 lg:py-0 px-6 lg:px-3 text-700 select-none text-xl lg:text-base font-medium lg:font-base w-full lg:w-auto">
         <span className="font-bold">{props.lan.header.home}</span>
         <span
@@ -83,7 +83,7 @@ export default function Header(props: any) {
         />
       </a>
     </li>,
-    <li className="flex flex-column lg:flex-row">
+    <li key={2} className="flex flex-column lg:flex-row">
       <a className="p-ripple inline-flex align-items-center cursor-pointer border-right-2 lg:border-right-none lg:border-bottom-2 border-transparent hover:border-primary py-3 lg:py-0 px-6 lg:px-3 text-700 select-none text-xl lg:text-base font-medium lg:font-base w-full lg:w-auto">
         <span className="font-bold">{props.lan.header.store}</span>
         <span role="presentation" className="p-ink" />
@@ -92,7 +92,7 @@ export default function Header(props: any) {
         <div className="border-2 border-dashed surface-border border-round h-full" />
       </div>
     </li>,
-    <li className="flex flex-column lg:flex-row">
+    <li key={3} className="flex flex-column lg:flex-row">
       <a
         className="p-ripple inline-flex align-items-center custom-tooltip-btn cursor-pointer border-right-2 lg:border-right-none lg:border-bottom-2 border-transparent hover:border-primary py-3 lg:py-0 px-6 lg:px-3 text-700 select-none text-xl lg:text-base font-medium lg:font-base w-full lg:w-auto"
         onClick={() => setVisible(true)}
@@ -205,8 +205,12 @@ export default function Header(props: any) {
         </div>
       </Dialog>
       {props.default_language === "ar"
-        ? [<Logo_comp />, <List_comp />, <Cart_comp />].reverse()
-        : [<Logo_comp />, <List_comp />, <Cart_comp />]}
+        ? [
+            <Logo_comp key={1} />,
+            <List_comp key={2} />,
+            <Cart_comp key={3} />,
+          ].reverse()
+        : [<Logo_comp key={1} />, <List_comp key={2} />, <Cart_comp key={3} />]}
 
       <a
         className="p-ripple cursor-pointer flex align-items-center lg:hidden text-700 mr-3 sm:mr-5"

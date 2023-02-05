@@ -22,6 +22,29 @@ export default function Checkoutsidebar(props: any) {
     setdeleted(false);
   }, [deleted]);
 
+  const comp_array = [
+    <Languages
+      key={1}
+      default_language={props.default_language}
+      setdefault_language={props.setdefault_language}
+    />,
+    <div
+      key={2}
+      onClick={(e) => setVisible(true)}
+      className="flex align-items-center p-3 "
+    >
+      <i className="pi pi-shopping-cart mr-2 text-xl  p-overlay-badge">
+        {props.total ? (
+          <span className="p-badge p-component p-badge-dot" />
+        ) : (
+          ""
+        )}
+      </i>
+      <p className="font-semibold">{props.lan.header.cart}</p>
+      <span role="presentation" className="p-ink" />
+    </div>,
+  ];
+
   return (
     <>
       <Order_details
@@ -93,24 +116,24 @@ export default function Checkoutsidebar(props: any) {
               <div className="flex align-items-center justify-content-between mb-3">
                 {props.default_language === "ar"
                   ? [
-                      <span className="text-900 font-medium">
+                      <span key={1} className="text-900 font-medium">
                         {props.lan.checkout_sidebar.total_amount_title} {""}
                         <span className="text-600 text-sm">
                           {props.lan.checkout_sidebar.note}
                         </span>
                       </span>,
-                      <span className="text-900 font-bold">
+                      <span key={2} className="text-900 font-bold">
                         {formatter.format(props.total)}
                       </span>,
                     ].reverse()
                   : [
-                      <span className="text-900 font-medium">
+                      <span key={2} className="text-900 font-medium">
                         {props.lan.checkout_sidebar.total_amount_title} {""}
                         <span className="text-600 text-sm">
                           {props.lan.checkout_sidebar.note}
                         </span>
                       </span>,
-                      <span className="text-900 font-bold">
+                      <span key={3} className="text-900 font-bold">
                         {formatter.format(props.total)}
                       </span>,
                     ]}
@@ -145,24 +168,7 @@ export default function Checkoutsidebar(props: any) {
       </Sidebar>
       <div className="">
         <div className="flex align-items-center p-3 ">
-          <Languages
-            default_language={props.default_language}
-            setdefault_language={props.setdefault_language}
-          />
-          <div
-            onClick={(e) => setVisible(true)}
-            className="flex align-items-center p-3 "
-          >
-            <i className="pi pi-shopping-cart mr-2 text-xl  p-overlay-badge">
-              {props.total ? (
-                <span className="p-badge p-component p-badge-dot" />
-              ) : (
-                ""
-              )}
-            </i>
-            <p className="font-semibold">{props.lan.header.cart}</p>
-            <span role="presentation" className="p-ink" />
-          </div>
+          {props.default_language === "ar" ? comp_array.reverse() : comp_array}
         </div>
       </div>
     </>

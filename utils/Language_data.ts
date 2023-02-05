@@ -33,6 +33,28 @@ export const ar_lan = {
     button_label: "الدفع",
     second_button_label: "مواصلة التسوق",
   },
+  filter: {
+    title: 'فلتر',
+    price: {
+      sort: 'الترتيب حسب السعر',
+      heigh_to_low: 'سعر متناقص',
+      low_to_heigh: 'السعر تصاعديا'
+
+    },
+    search: 'البحث',
+    category: {
+      placeholder: 'اختر فئة',
+
+    },
+    clear: 'امسح'
+  },
+  more_product_detail: 'المزيد من التفاصيل',
+  product_details: {
+    add_to_cart: 'أضف إلى السلة',
+    colors: 'الألوان',
+    sizes: 'مقاسات',
+    size_guide: 'دليل المقاسات'
+  }
 };
 
 export const fr_lan = {
@@ -70,6 +92,29 @@ export const fr_lan = {
     button_label: "Caisse",
     second_button_label: "Continuer vos achats",
   },
+  filter: {
+    title: 'Filtre',
+    price: {
+      sort: 'Trier par prix',
+      heigh_to_low: 'Prix décroissant',
+      low_to_heigh: 'Prix ​​croissant'
+
+    },
+    search: 'Rechercher',
+    category: {
+      placeholder: 'choisissez une catégorie',
+
+    },
+    clear: 'Effacer'
+  },
+  more_product_detail: 'Plus de détails',
+  product_details: {
+    add_to_cart: 'Ajouter au panier',
+    colors: 'Couleurs',
+    sizes: 'Tailles',
+    size_guide: 'Guide des tailles'
+  }
+
 };
 export const en_lan = {
   header: {
