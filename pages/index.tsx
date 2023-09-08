@@ -1,5 +1,7 @@
 import Head from "next/head";
 import Carousel_component from "../components/Carousel";
+
+
 import Hero from "../components/Hero";
 import Productslist from "../components/Productslist";
 import Header from "../components/Header";
@@ -29,6 +31,19 @@ export default function Home() {
                 setdefault_language={setdefault_language}
             />
             <div className="">
+                <div style={{
+                    width: '100%',
+                    height: '100vh',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                }}>
+                    <video src='./brand.mp4' style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover'
+                    }} autoPlay muted loop />
+                </div>
                 <Hero
                     lan={default_language === "fr" ? fr_lan : default_language === "en" ? en_lan : ar_lan}
                     default_language={default_language}
