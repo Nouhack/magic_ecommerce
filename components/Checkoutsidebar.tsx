@@ -140,7 +140,6 @@ export default function Checkoutsidebar(props: any) {
                                             </span>
                                         </span>,
                                         <span key={2} className="text-900 font-bold">
-                                            //{formatter.format(props.total)}
                                             {formatter.format(localtotal)}
                                         </span>,
                                     ].reverse()
